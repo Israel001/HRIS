@@ -35,51 +35,71 @@
   <body>
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <div class="bg-dark col-auto col-md-2 min-vh-100 w-30">
-          <div class="bg-dark p-2">
+        <div
+          class="side col-auto col-md-4 col-lg-3 min-vh-100 d-flex flex-column justify-content-between"
+        >
+          <div class="side2 p-2">
             <a
-              class="d-flex text-decoration-none mt-1 align-items-center text-white"
+              class="d-flex text-black text-decoration-none mt-1 align-items-center"
             >
-              <span class="fs-4 d-none d-sm-inline">SideMenu</span>
+              <span class="fs-8 d-none d-sm-inline">SideMenu</span>
             </a>
             <ul class="nav nav-pills flex-column mt-4">
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white">
-                  <i class="fs-5 fa fa-gauge"></i
-                  ><span class="fs-4 d-none d-sm-inline">Dashboard</span>
+              <li class="nav-item py-2 py-sm-0">
+                <a href="#" class="nav-link">
+                  <i class="fs-8 fa fa-gauge"></i
+                  ><span class="fs-8 d-none ms-3 d-sm-inline">Dashboard</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white">
-                  <i class="fs-5 fa fa-gauge"></i
-                  ><span class="fs-4 d-none d-sm-inline">Onboarding</span>
+              <li class="nav-item py-2 py-sm-0">
+                <a href="#" class="nav-link">
+                  <i class="fs-8 fa fa-table-list"></i
+                  ><span class="fs-8 d-none ms-3 d-sm-inline">Onboarding</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white">
-                  <i class="fs-5 fa fa-gauge"></i
-                  ><span class="fs-4 d-none d-sm-inline">Payroll</span>
+              <li class="nav-item py-2 py-sm-0">
+                <a href="#" class="nav-link">
+                  <i class="fs-8 fa fa-clipboard"></i
+                  ><span class="fs-8 d-none ms-3 d-sm-inline">Payroll</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white">
-                  <i class="fs-5 fa fa-check"></i
-                  ><span class="fs-4 d-none d-sm-inline">Approvals</span>
+              <li class="nav-item py-2 py-sm-0">
+                <a href="#" class="nav-link">
+                  <i class="fs-8 fa fa-check"></i
+                  ><span class="fs-8 d-none ms-3 d-sm-inline">Approvals</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white">
-                  <i class="fs-5 fa fa-gauge"></i
-                  ><span class="fs-8 d-none d-sm-inline">Reports</span>
+              <li class="nav-item py-2 py-sm-0">
+                <a href="#" class="nav-link">
+                  <i class="fs-8 fa fa-gauge"></i
+                  ><span class="fs-8 d-none ms-3 d-sm-inline">Reports</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link text-white">
-                  <i class="fs-5 fa fa-gauge"></i
-                  ><span class="fs-4 d-none d-sm-inline">Settings</span>
+              <li class="nav-item py-2 py-sm-0">
+                <a href="#" class="nav-link">
+                  <i class="fs-8 fa fa-gauge"></i
+                  ><span class="fs-8 d-none ms-3 d-sm-inline">Settings</span>
                 </a>
               </li>
             </ul>
+          </div>
+          <div class="dropdown open">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="triggerId"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa fa-user"></i><soan>HRIS</soan>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="triggerId">
+              <button class="dropdown-item" href="#">Action</button>
+              <button class="dropdown-item disabled" href="#">
+                Disabled action
+              </button>
+            </div>
           </div>
         </div>
         <div class="container w-70 p-4">
