@@ -294,6 +294,9 @@ table.dataTable th,
 table.dataTable td {
   box-sizing: border-box;
 }
+table.dataTable th {
+  border: 1px solid red;
+}
 table.dataTable th.dt-left,
 table.dataTable td.dt-left {
   text-align: left;

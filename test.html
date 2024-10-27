@@ -1,558 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payroll Configuration</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
-      :root {
-        --primary-color: #2c2c57;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Inter", sans-serif;
-        display: flex;
-        background-color: #fff;
-      }
-
-      .sidebar {
-        width: 250px;
-        background-color: #f0f0f8;
-        height: 100vh;
-        padding: 20px 10px;
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        transition: left 0.3s ease-in-out;
-        z-index: 2000;
-      }
-
-      .logo {
-        margin-bottom: 30px;
-      }
-
-      .menu-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        margin-bottom: 5px;
-        color: #4a5568;
-        text-decoration: none;
-        border-radius: 5px;
-        position: relative;
-        cursor: pointer;
-      }
-
-      .menu-item.active,
-      .menu-item:hover {
-        background-color: var(--primary-color);
-        color: #ffffff;
-      }
-
-      .menu-item i {
-        margin-right: 10px;
-      }
-
-      .menu-item > span {
-        display: flex;
-        align-items: center;
-      }
-
-      .main-content {
-        flex: 1;
-        padding: 30px;
-        margin-left: 250px;
-        transition: margin-left 0.3s ease-in-out;
-      }
-
-      h1 {
-        font-size: 24px;
-        font-weight: 600;
-        color: #2d3748;
-        margin-bottom: 5px;
-      }
-
-      .subtitle {
-        font-size: 14px;
-        color: #718096;
-        margin-bottom: 20px;
-      }
-
-      .tabs {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: 1px solid #e0e0e0;
-        margin-bottom: 20px;
-      }
-
-      .tab {
-        padding: 10px 20px;
-        color: #667085;
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .tab.active,
-      .tab:hover {
-        color: #ba9359;
-        border-bottom: 2px solid #ba9359;
-        font-weight: bold;
-      }
-
-      .add-deduction {
-        background-color: var(--primary-color);
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-      }
-
-      .table-container {
-        overflow-x: auto;
-        border: 1px solid #eaecf0;
-        border-radius: 16px;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #ffffff;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        font-size: 14px;
-        min-width: 600px;
-      }
-
-      th,
-      td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #eaecf0;
-      }
-
-      tr:last-child td {
-        border-bottom: none;
-      }
-
-      td:not(:last-child) {
-        border-right: 1px solid #eaecf0;
-      }
-
-      th {
-        background-color: #f9fafb;
-        font-weight: 600;
-        color: #4a5568;
-      }
-
-      td {
-        color: #2d3748;
-      }
-
-      .user-info {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        display: flex;
-        align-items: center;
-      }
-
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-      }
-
-      .user-name {
-        font-weight: 500;
-        color: #2d3748;
-      }
-
-      .user-email {
-        font-size: 12px;
-        color: #718096;
-      }
-
-      .pagination {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-        font-size: 14px;
-      }
-
-      .pagination-info {
-        color: #718096;
-        text-align: center;
-        margin-top: 10px;
-      }
-
-      .pagination-controls {
-        display: flex;
-        gap: 5px;
-      }
-
-      .pagination-button {
-        background-color: #ffffff;
-        border: 1px solid #e0e0e0;
-        color: #4a5568;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .pagination-button:hover {
-        background-color: #f8f9fa;
-      }
-
-      .pagination-button.active {
-        background-color: #2c3e50;
-        color: #ffffff;
-        border-color: #2c3e50;
-      }
-
-      .pagination-button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      .menu-toggle {
-        display: none;
-        font-size: 24px;
-        cursor: pointer;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1999;
-      }
-
-      .menu-toggle.open {
-        display: none;
-      }
-
-      .search-container {
-        position: relative;
-        width: 250px;
-      }
-
-      .search-container input {
-        width: 100%;
-        padding: 10px 40px;
-        border: 1px solid #c5c5c5;
-        border-radius: 8px;
-        font-size: 16px;
-        color: #6c757d;
-        padding-left: 46px;
-      }
-
-      .search-container input:focus {
-        border: 1px solid var(--primary-color);
-        outline: none;
-      }
-
-      .search-container .search-icon {
-        position: absolute;
-        top: 50%;
-        left: 15px;
-        transform: translateY(-50%);
-        font-size: 16px;
-        color: #6c757d;
-      }
-
-      .search-parent {
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      /* Container for dropdown */
-      .dropdown {
-        width: 200px;
-        font-family: Arial, sans-serif;
-        position: relative;
-        display: inline-block;
-        display: none;
-        margin-top: 20px;
-      }
-
-      .pagination-dropdown {
-        margin-top: 0;
-        display: block;
-      }
-
-      /* Button for dropdown */
-      .dropdown-toggle {
-        background-color: white;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        width: 100%;
-        text-align: left;
-        cursor: pointer;
-        font-size: 16px;
-        color: #333;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      /* Arrow icon */
-      .dropdown-toggle .arrow {
-        border: solid #666;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 4px;
-        transform: rotate(45deg);
-        transition: transform 0.3s ease;
-        margin-bottom: 0.5rem;
-      }
-
-      /* Arrow pointing up when active */
-      .dropdown-toggle.active .arrow {
-        transform: rotate(-135deg);
-      }
-
-      .dropdown-menu {
-        display: none;
-        position: absolute;
-        background-color: white;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 100%;
-        margin-top: 5px;
-        z-index: 1;
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .dropdown-menu li a {
-        text-decoration: none;
-        color: #333;
-        display: block;
-        padding: 10px;
-      }
-
-      .dropdown-menu li a:hover {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      /* Show menu when active */
-      .dropdown.active .dropdown-menu {
-        display: block;
-      }
-
-      .dropdown.active .dropdown-menu {
-        display: block;
-      }
-
-      /* Selected option */
-      .dropdown-menu li.selected a {
-        background-color: var(
-          --primary-color
-        ); /* Light blue background for the selected item */
-        color: white;
-      }
-
-      .hidden {
-        display: none !important;
-      }
-
-      .pagination-dropdown {
-        width: 70px;
-      }
-
-      .overlay {
-        position: fixed; /* Fixes the position to the viewport */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1998;
-      }
-
-      .color-white {
-        color: white;
-      }
-
-      .floating-menu {
-        list-style: none;
-        background-color: white;
-        border-radius: 8px;
-        font-size: 14px;
-        position: absolute;
-        top: 0;
-        left: 223px;
-        z-index: 1000;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        width: 200px;
-        color: black;
-        display: none;
-      }
-
-      .menu-arrow {
-        font-size: 12px;
-        transition: transform 0.3s ease-out;
-      }
-
-      .sidebar ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .menu-item::after {
-        content: "";
-        border: solid;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 4px;
-        transform: rotate(45deg);
-        transition: transform 0.3s ease;
-        margin-bottom: 0.5rem;
-        margin-left: auto;
-        margin-left: auto; /* Push the arrow to the far right */
-        transition: transform 0.3s ease-out;
-      }
-
-      .menu-item.open::after {
-        transform: rotate(225deg);
-        margin-top: 0.7rem;
-      }
-
-      .submenu {
-        display: none;
-      }
-
-      .submenu.open {
-        display: block;
-      }
-
-      .submenu.open li {
-        padding: 0.5rem 0;
-        padding-left: 44px;
-        margin-bottom: 0.5rem;
-      }
-
-      .submenu.open li:hover a,
-      .submenu.open li.selected a {
-        color: #ba9359;
-        font-weight: bold;
-      }
-
-      .submenu.open li a {
-        text-decoration: none;
-        color: #4a5568;
-      }
-
-      @media (max-width: 1000px) {
-        .mobile-header {
-          position: fixed;
-          margin-left: -20px;
-          margin-right: -20px;
-          margin-top: -20px;
-          padding: 20px;
-          width: 100%;
-          box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-          z-index: 1000;
-          background-color: white;
-        }
-
-        .mobile-body {
-          margin-top: 150px;
-        }
-
-        .sidebar {
-          left: -250px;
-        }
-
-        .sidebar.open {
-          width: 70%;
-          left: 0;
-          z-index: 2000;
-          box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .main-content {
-          margin-left: 0;
-          padding: 20px;
-        }
-
-        .menu-toggle {
-          display: block;
-        }
-
-        .sidebar.open + .menu-toggle-close {
-          display: block;
-        }
-
-        .add-deduction {
-          float: none;
-          margin-top: 10px;
-          order: -1;
-          margin-bottom: 20px;
-          width: max-content;
-        }
-
-        .search-parent {
-          flex-direction: column;
-          align-items: end;
-        }
-
-        .pagination {
-          align-items: center;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .dropdown {
-          display: block;
-        }
-
-        .tabs {
-          flex-direction: column;
-          display: none;
-        }
-      }
-
-      @media (max-width: 450px) {
-        .table-container {
-          width: 370px;
-        }
-      }
-
-      @media (max-width: 400px) {
-        .table-container {
-          width: 350px;
-        }
-      }
-
-      @media (max-width: 350px) {
-        .table-container {
-          width: 290px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="menu-toggle">☰</div>
-    <div class="sidebar">
+<div class="sidebar"></div>
       <svg
         class="logo"
-        width="220"
-        height="64"
+        width="142"
+        height="32"
         viewBox="0 0 142 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -580,297 +30,273 @@
         </defs>
       </svg>
 
-      <ul>
-        <li>
-          <a href="#" class="menu-item" data-target="submenu-1">
-            <span class="icon">
-              <i
-                ><svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_48_1227)">
-                    <path
-                      d="M5 12H3L12 3L21 12H19"
-                      stroke="#7A7A97"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M5 12V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V12"
-                      stroke="#7A7A97"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M10 12H14V16H10V12Z"
-                      stroke="#7A7A97"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_48_1227">
-                      <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </i>
-            </span>
-            Dashboard
-          </a>
-          <ul class="submenu" id="submenu-1">
-            <li><a href="#">Payroll Configuration</a></li>
-            <li><a href="#">Employee Payroll</a></li>
-            <li><a href="#">Manage Payment Cycle</a></li>
-            <li><a href="#">Manage Currency</a></li>
-            <li><a href="#">Payroll Report</a></li>
-          </ul>
-        </li>
-        <a href="#" class="menu-item"
-          ><i
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_48_1238)">
-                <path
-                  d="M8 7C8 8.06087 8.42143 9.07828 9.17157 9.82843C9.92172 10.5786 10.9391 11 12 11C13.0609 11 14.0783 10.5786 14.8284 9.82843C15.5786 9.07828 16 8.06087 16 7C16 5.93913 15.5786 4.92172 14.8284 4.17157C14.0783 3.42143 13.0609 3 12 3C10.9391 3 9.92172 3.42143 9.17157 4.17157C8.42143 4.92172 8 5.93913 8 7Z"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M16 19H22"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M19 16V22"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M6 21V19C6 17.9391 6.42143 16.9217 7.17157 16.1716C7.92172 15.4214 8.93913 15 10 15H14"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_48_1238">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </i>
-          Onboarding</a
-        >
-        <li>
-          <a href="#" class="menu-item active open" data-target="submenu-3">
-            <span class="icon">
-              <i
-                ><svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_48_1250)">
-                    <path
-                      d="M7 11C7 10.4696 7.21071 9.96086 7.58579 9.58579C7.96086 9.21071 8.46957 9 9 9H19C19.5304 9 20.0391 9.21071 20.4142 9.58579C20.7893 9.96086 21 10.4696 21 11V17C21 17.5304 20.7893 18.0391 20.4142 18.4142C20.0391 18.7893 19.5304 19 19 19H9C8.46957 19 7.96086 18.7893 7.58579 18.4142C7.21071 18.0391 7 17.5304 7 17V11Z"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M12 14C12 14.5304 12.2107 15.0391 12.5858 15.4142C12.9609 15.7893 13.4696 16 14 16C14.5304 16 15.0391 15.7893 15.4142 15.4142C15.7893 15.0391 16 14.5304 16 14C16 13.4696 15.7893 12.9609 15.4142 12.5858C15.0391 12.2107 14.5304 12 14 12C13.4696 12 12.9609 12.2107 12.5858 12.5858C12.2107 12.9609 12 13.4696 12 14Z"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M17 9V7C17 6.46957 16.7893 5.96086 16.4142 5.58579C16.0391 5.21071 15.5304 5 15 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V13C3 13.5304 3.21071 14.0391 3.58579 14.4142C3.96086 14.7893 4.46957 15 5 15H7"
-                      stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_48_1250">
-                      <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </i>
-            </span>
-            Payroll
-          </a>
-          <ul class="submenu open" id="submenu-3">
-            <li class="selected"><a href="#">Payroll Configuration</a></li>
-            <li><a href="#">Employee Payroll</a></li>
-            <li><a href="#">Manage Payment Cycle</a></li>
-            <li><a href="#">Manage Currency</a></li>
-            <li><a href="#">Payroll Report</a></li>
-          </ul>
-        </li>
-        <a href="#" class="menu-item"
-          ><i
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_48_1261)">
-                <path
-                  d="M7 12L12 17L22 7"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M2 12L7 17M12 12L17 7"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_48_1261">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </i>
-          Approvals</a
-        >
-        <a href="#" class="menu-item"
-          ><i
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_61_2750)">
-                <path
-                  d="M8 5H6C5.46957 5 4.96086 5.21071 4.58579 5.58579C4.21071 5.96086 4 6.46957 4 7V19C4 19.5304 4.21071 20.0391 4.58579 20.4142C4.96086 20.7893 5.46957 21 6 21H11.697"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M18 14V18H22"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M18 11V7C18 6.46957 17.7893 5.96086 17.4142 5.58579C17.0391 5.21071 16.5304 5 16 5H14"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 5C8 4.46957 8.21071 3.96086 8.58579 3.58579C8.96086 3.21071 9.46957 3 10 3H12C12.5304 3 13.0391 3.21071 13.4142 3.58579C13.7893 3.96086 14 4.46957 14 5C14 5.53043 13.7893 6.03914 13.4142 6.41421C13.0391 6.78929 12.5304 7 12 7H10C9.46957 7 8.96086 6.78929 8.58579 6.41421C8.21071 6.03914 8 5.53043 8 5Z"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M14 18C14 19.0609 14.4214 20.0783 15.1716 20.8284C15.9217 21.5786 16.9391 22 18 22C19.0609 22 20.0783 21.5786 20.8284 20.8284C21.5786 20.0783 22 19.0609 22 18C22 16.9391 21.5786 15.9217 20.8284 15.1716C20.0783 14.4214 19.0609 14 18 14C16.9391 14 15.9217 14.4214 15.1716 15.1716C14.4214 15.9217 14 16.9391 14 18Z"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 11H12"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8 15H11"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_61_2750">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </i>
-          Reports</a
-        >
-        <a href="#" class="menu-item"
-          ><i
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_61_2765)">
-                <path
-                  d="M10.325 4.317C10.751 2.561 13.249 2.561 13.675 4.317C13.7389 4.5808 13.8642 4.82578 14.0407 5.032C14.2172 5.23822 14.4399 5.39985 14.6907 5.50375C14.9414 5.60764 15.2132 5.65085 15.4838 5.62987C15.7544 5.60889 16.0162 5.5243 16.248 5.383C17.791 4.443 19.558 6.209 18.618 7.753C18.4769 7.98466 18.3924 8.24634 18.3715 8.51677C18.3506 8.78721 18.3938 9.05877 18.4975 9.30938C18.6013 9.55999 18.7627 9.78258 18.9687 9.95905C19.1747 10.1355 19.4194 10.2609 19.683 10.325C21.439 10.751 21.439 13.249 19.683 13.675C19.4192 13.7389 19.1742 13.8642 18.968 14.0407C18.7618 14.2172 18.6001 14.4399 18.4963 14.6907C18.3924 14.9414 18.3491 15.2132 18.3701 15.4838C18.3911 15.7544 18.4757 16.0162 18.617 16.248C19.557 17.791 17.791 19.558 16.247 18.618C16.0153 18.4769 15.7537 18.3924 15.4832 18.3715C15.2128 18.3506 14.9412 18.3938 14.6906 18.4975C14.44 18.6013 14.2174 18.7627 14.0409 18.9687C13.8645 19.1747 13.7391 19.4194 13.675 19.683C13.249 21.439 10.751 21.439 10.325 19.683C10.2611 19.4192 10.1358 19.1742 9.95929 18.968C9.7828 18.7618 9.56011 18.6001 9.30935 18.4963C9.05859 18.3924 8.78683 18.3491 8.51621 18.3701C8.24559 18.3911 7.98375 18.4757 7.752 18.617C6.209 19.557 4.442 17.791 5.382 16.247C5.5231 16.0153 5.60755 15.7537 5.62848 15.4832C5.64942 15.2128 5.60624 14.9412 5.50247 14.6906C5.3987 14.44 5.23726 14.2174 5.03127 14.0409C4.82529 13.8645 4.58056 13.7391 4.317 13.675C2.561 13.249 2.561 10.751 4.317 10.325C4.5808 10.2611 4.82578 10.1358 5.032 9.95929C5.23822 9.7828 5.39985 9.56011 5.50375 9.30935C5.60764 9.05859 5.65085 8.78683 5.62987 8.51621C5.60889 8.24559 5.5243 7.98375 5.383 7.752C4.443 6.209 6.209 4.442 7.753 5.382C8.753 5.99 10.049 5.452 10.325 4.317Z"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12Z"
-                  stroke="#7A7A97"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_61_2765">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </i>
-          Settings</a
-        >
-      </ul>
+      <a href="#" class="menu-item"
+        ><i
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_48_1227)">
+              <path
+                d="M5 12H3L12 3L21 12H19"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5 12V19C5 19.5304 5.21071 20.0391 5.58579 20.4142C5.96086 20.7893 6.46957 21 7 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V12"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10 12H14V16H10V12Z"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_48_1227">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </i>
+        Dashboard</a
+      >
+      <a href="#" class="menu-item"
+        ><i
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_48_1238)">
+              <path
+                d="M8 7C8 8.06087 8.42143 9.07828 9.17157 9.82843C9.92172 10.5786 10.9391 11 12 11C13.0609 11 14.0783 10.5786 14.8284 9.82843C15.5786 9.07828 16 8.06087 16 7C16 5.93913 15.5786 4.92172 14.8284 4.17157C14.0783 3.42143 13.0609 3 12 3C10.9391 3 9.92172 3.42143 9.17157 4.17157C8.42143 4.92172 8 5.93913 8 7Z"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M16 19H22"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M19 16V22"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6 21V19C6 17.9391 6.42143 16.9217 7.17157 16.1716C7.92172 15.4214 8.93913 15 10 15H14"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_48_1238">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </i>
+        Onboarding</a
+      >
+      <a href="#" class="menu-item active"
+        ><i
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_48_1250)">
+              <path
+                d="M7 11C7 10.4696 7.21071 9.96086 7.58579 9.58579C7.96086 9.21071 8.46957 9 9 9H19C19.5304 9 20.0391 9.21071 20.4142 9.58579C20.7893 9.96086 21 10.4696 21 11V17C21 17.5304 20.7893 18.0391 20.4142 18.4142C20.0391 18.7893 19.5304 19 19 19H9C8.46957 19 7.96086 18.7893 7.58579 18.4142C7.21071 18.0391 7 17.5304 7 17V11Z"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 14C12 14.5304 12.2107 15.0391 12.5858 15.4142C12.9609 15.7893 13.4696 16 14 16C14.5304 16 15.0391 15.7893 15.4142 15.4142C15.7893 15.0391 16 14.5304 16 14C16 13.4696 15.7893 12.9609 15.4142 12.5858C15.0391 12.2107 14.5304 12 14 12C13.4696 12 12.9609 12.2107 12.5858 12.5858C12.2107 12.9609 12 13.4696 12 14Z"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17 9V7C17 6.46957 16.7893 5.96086 16.4142 5.58579C16.0391 5.21071 15.5304 5 15 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V13C3 13.5304 3.21071 14.0391 3.58579 14.4142C3.96086 14.7893 4.46957 15 5 15H7"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_48_1250">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </i>
+        Payroll</a
+      >
+      <a href="#" class="menu-item"
+        ><i
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_48_1261)">
+              <path
+                d="M7 12L12 17L22 7"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2 12L7 17M12 12L17 7"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_48_1261">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </i>
+        Approvals</a
+      >
+      <a href="#" class="menu-item"
+        ><i
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_61_2750)">
+              <path
+                d="M8 5H6C5.46957 5 4.96086 5.21071 4.58579 5.58579C4.21071 5.96086 4 6.46957 4 7V19C4 19.5304 4.21071 20.0391 4.58579 20.4142C4.96086 20.7893 5.46957 21 6 21H11.697"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M18 14V18H22"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M18 11V7C18 6.46957 17.7893 5.96086 17.4142 5.58579C17.0391 5.21071 16.5304 5 16 5H14"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8 5C8 4.46957 8.21071 3.96086 8.58579 3.58579C8.96086 3.21071 9.46957 3 10 3H12C12.5304 3 13.0391 3.21071 13.4142 3.58579C13.7893 3.96086 14 4.46957 14 5C14 5.53043 13.7893 6.03914 13.4142 6.41421C13.0391 6.78929 12.5304 7 12 7H10C9.46957 7 8.96086 6.78929 8.58579 6.41421C8.21071 6.03914 8 5.53043 8 5Z"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14 18C14 19.0609 14.4214 20.0783 15.1716 20.8284C15.9217 21.5786 16.9391 22 18 22C19.0609 22 20.0783 21.5786 20.8284 20.8284C21.5786 20.0783 22 19.0609 22 18C22 16.9391 21.5786 15.9217 20.8284 15.1716C20.0783 14.4214 19.0609 14 18 14C16.9391 14 15.9217 14.4214 15.1716 15.1716C14.4214 15.9217 14 16.9391 14 18Z"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8 11H12"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8 15H11"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_61_2750">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </i>
+        Reports</a
+      >
+      <a href="#" class="menu-item"
+        ><i
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_61_2765)">
+              <path
+                d="M10.325 4.317C10.751 2.561 13.249 2.561 13.675 4.317C13.7389 4.5808 13.8642 4.82578 14.0407 5.032C14.2172 5.23822 14.4399 5.39985 14.6907 5.50375C14.9414 5.60764 15.2132 5.65085 15.4838 5.62987C15.7544 5.60889 16.0162 5.5243 16.248 5.383C17.791 4.443 19.558 6.209 18.618 7.753C18.4769 7.98466 18.3924 8.24634 18.3715 8.51677C18.3506 8.78721 18.3938 9.05877 18.4975 9.30938C18.6013 9.55999 18.7627 9.78258 18.9687 9.95905C19.1747 10.1355 19.4194 10.2609 19.683 10.325C21.439 10.751 21.439 13.249 19.683 13.675C19.4192 13.7389 19.1742 13.8642 18.968 14.0407C18.7618 14.2172 18.6001 14.4399 18.4963 14.6907C18.3924 14.9414 18.3491 15.2132 18.3701 15.4838C18.3911 15.7544 18.4757 16.0162 18.617 16.248C19.557 17.791 17.791 19.558 16.247 18.618C16.0153 18.4769 15.7537 18.3924 15.4832 18.3715C15.2128 18.3506 14.9412 18.3938 14.6906 18.4975C14.44 18.6013 14.2174 18.7627 14.0409 18.9687C13.8645 19.1747 13.7391 19.4194 13.675 19.683C13.249 21.439 10.751 21.439 10.325 19.683C10.2611 19.4192 10.1358 19.1742 9.95929 18.968C9.7828 18.7618 9.56011 18.6001 9.30935 18.4963C9.05859 18.3924 8.78683 18.3491 8.51621 18.3701C8.24559 18.3911 7.98375 18.4757 7.752 18.617C6.209 19.557 4.442 17.791 5.382 16.247C5.5231 16.0153 5.60755 15.7537 5.62848 15.4832C5.64942 15.2128 5.60624 14.9412 5.50247 14.6906C5.3987 14.44 5.23726 14.2174 5.03127 14.0409C4.82529 13.8645 4.58056 13.7391 4.317 13.675C2.561 13.249 2.561 10.751 4.317 10.325C4.5808 10.2611 4.82578 10.1358 5.032 9.95929C5.23822 9.7828 5.39985 9.56011 5.50375 9.30935C5.60764 9.05859 5.65085 8.78683 5.62987 8.51621C5.60889 8.24559 5.5243 7.98375 5.383 7.752C4.443 6.209 6.209 4.442 7.753 5.382C8.753 5.99 10.049 5.452 10.325 4.317Z"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12Z"
+                stroke="#7A7A97"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_61_2765">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </i>
+        Settings</a
+      >
       <div class="user-info">
         <svg
           class="user-avatar"
@@ -942,187 +368,6 @@
         </svg>
       </div>
     </div>
-    <div class="menu-toggle hidden menu-toggle-close">x</div>
-    <div class="overlay hidden"></div>
-    <div class="main-content">
-      <div class="mobile-header">
-        <h1>Payroll Configuration</h1>
-        <p class="subtitle">Manage your billing and payment details.</p>
-        <div class="tabs">
-          <a href="#" class="tab">Income</a>
-          <a href="#" class="tab active">Deductions</a>
-          <a href="#" class="tab">Allowance</a>
-          <a href="#" class="tab">Reimbursements</a>
-          <a href="#" class="tab">Employer's Contribution</a>
-        </div>
-        <div class="dropdown">
-          <button class="dropdown-toggle" onclick="toggleDropdown()">
-            <span id="selected-value">Deductions</span>
-            <span class="arrow"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#" onclick="selectOption(this, 'Income')">Income</a>
-            </li>
-            <li class="selected">
-              <a href="#" onclick="selectOption(this, 'Deductions')"
-                >Deductions</a
-              >
-            </li>
-            <li>
-              <a href="#" onclick="selectOption(this, 'Allowance')"
-                >Allowance</a
-              >
-            </li>
-            <li>
-              <a href="#" onclick="selectOption(this, 'Reimbursement')"
-                >Reimbursement</a
-              >
-            </li>
-            <li>
-              <a href="#" onclick="selectOption('Employer\'s Contribution')"
-                >Employer's Contribution</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="mobile-body">
-        <div class="search-parent">
-          <div class="search-container">
-            <input type="text" placeholder="Search" />
-            <span class="search-icon">🔍</span>
-          </div>
-          <button class="add-deduction">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_61_1155)">
-                <path
-                  d="M10 4.16663V15.8333"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4.16669 10H15.8334"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_61_1155">
-                  <rect width="20" height="20" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            <span
-              style="
-                display: inline-block;
-                margin-top: 0.09rem;
-                margin-left: 0.5rem;
-              "
-              >Add Deduction</span
-            >
-          </button>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Type</th>
-                <th>Tax Exemption</th>
-                <th>Relief</th>
-                <th>Value</th>
-                <th>Date Created</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Personal Allowance</td>
-                <td>Percentage + Fixed</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>20.00% of Basic, Housing, Transport</td>
-                <td>Dec 1, 2022 06:00:16</td>
-              </tr>
-              <tr>
-                <td>Pension</td>
-                <td>Percentage Total</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>8.00% of Basic, Housing, Transport</td>
-                <td>Nov 1, 2022 06:00:16</td>
-              </tr>
-              <tr>
-                <td>NHF</td>
-                <td>Percentage Total</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>2.50% of Basic</td>
-                <td>Oct 1, 2022 06:00:16</td>
-              </tr>
-              <tr>
-                <td>Paye</td>
-                <td>Tiered</td>
-                <td>No</td>
-                <td>No</td>
-                <td>
-                  1st: 300000.00 (7.00%)<br />
-                  1st: 300000.00 (7.00%)<br />
-                  1st: 300000.00 (7.00%)<br />
-                  1st: 300000.00 (7.00%)<br />
-                  1st: 300000.00 (7.00%)<br />
-                  1st: 300000.00 (7.00%)<br />
-                </td>
-                <td>Sep 1, 2022 06:00:16</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="pagination">
-          <div class="pagination-dropdown dropdown">
-            <button
-              class="dropdown-toggle pagination-dropdown-toggle"
-              onclick="togglePaginationDropdown()"
-            >
-              <span id="selected-pagination-value">10</span>
-              <span class="pagination-arrow arrow"></span>
-            </button>
-            <ul class="dropdown-menu pagination-dropdown-menu">
-              <li class="selected">
-                <a href="#" onclick="selectPaginationOption(this, '10')">10</a>
-              </li>
-              <li>
-                <a href="#" onclick="selectPaginationOption(this, '25')">25</a>
-              </li>
-              <li>
-                <a href="#" onclick="selectPaginationOption(this, '50')">50</a>
-              </li>
-              <li>
-                <a href="#" onclick="selectPaginationOption(this, '100')"
-                  >100</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="pagination-controls">
-            <button class="pagination-button" disabled>&lt;</button>
-            <button class="pagination-button active">1</button>
-            <button class="pagination-button" disabled>&gt;</button>
-          </div>
-        </div>
-        <div class="pagination-info">Showing 1 to 4 of 4 entries</div>
-      </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -1130,36 +375,13 @@
         $(".menu-toggle").click(function () {
           $(".sidebar").toggleClass("open");
           $(".main-content").toggleClass("sidebar-open");
-          $(".menu-toggle").toggleClass("hidden");
-          $(".overlay").toggleClass("hidden");
-          $(".menu-toggle-close").toggleClass("color-white");
         });
 
         $(window).resize(function () {
           if ($(window).width() > 768) {
             $(".sidebar").removeClass("open");
             $(".main-content").removeClass("sidebar-open");
-            $(".menu-toggle-close").addClass("hidden");
-            $(".overlay").addClass("hidden");
           }
-        });
-
-        $(document).click(function (event) {
-          if (
-            !$(event.target).closest(
-              ".sidebar, .menu-toggle.open, .menu-toggle"
-            ).length
-          ) {
-            $(".sidebar").removeClass("open");
-            $(".menu-toggle").removeClass("hidden");
-            $(".menu-toggle-close").addClass("hidden");
-            $(".overlay").addClass("hidden");
-            $(".menu-toggle-close").removeClass("color-white");
-          }
-        });
-
-        $(".sidebar").click(function (event) {
-          event.stopPropagation();
         });
       });
     </script>
@@ -1170,28 +392,6 @@
 
         dropdown.classList.toggle("active");
         arrow.classList.toggle("active");
-      }
-
-      function togglePaginationDropdown() {
-        const dropdown = document.querySelector(".pagination-dropdown");
-        const arrow = document.querySelector(".pagination-arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function selectPaginationOption(element, option) {
-        document.getElementById("selected-pagination-value").textContent =
-          option;
-        const allItems = document.querySelectorAll(
-          ".pagination-dropdown-menu li"
-        );
-        allItems.forEach((item) => item.classList.remove("selected"));
-        element.parentElement.classList.add("selected");
-        const dropdown = document.querySelector(".pagination-dropdown");
-        dropdown.classList.remove("active");
-        const arrow = document.querySelector(".pagination-arrow");
-        arrow.classList.remove("active");
       }
 
       function selectOption(element, option) {
@@ -1213,24 +413,4 @@
         const arrow = document.querySelector(".arrow");
         arrow.classList.remove("active");
       }
-
-      const menuItems = document.querySelectorAll(".menu-item");
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetSubmenu = document.getElementById(
-            this.getAttribute("data-target")
-          );
-          targetSubmenu.classList.toggle("open");
-          this.classList.toggle("open");
-          document.querySelectorAll(".submenu").forEach((submenu) => {
-            if (submenu !== targetSubmenu) {
-              submenu.classList.remove("open");
-              submenu.previousElementSibling.classList.remove("open");
-            }
-          });
-        });
-      });
     </script>
-  </body>
-</html>
