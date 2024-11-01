@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll Configuration</title>
-    <link rel="stylesheet" href="/payment.css" />
+    <link rel="stylesheet" href="/payroll-income.css" />
   </head>
   <body>
     <div class="menu-toggle">☰</div>
@@ -337,12 +337,6 @@
           <select class="zeal-professional">
             <option>Zeal Professionals</option>
           </select>
-          <div>
-            <div class="balance-info">
-              <span class="wallet-icon">💼</span>
-              <span class="balance-amount">₦12,600.00</span>
-            </div>
-          </div>
         </div>
         <div class="user-info">
           <svg
@@ -463,13 +457,13 @@
           <span class="divider">&gt;</span>
           <span class="breadcrumb-item">Payroll Configuration</span>
           <span class="divider">&gt;</span>
-          <span class="breadcrumb-item active">Deductions</span>
+          <span class="breadcrumb-item active">Income</span>
         </div>
         <h1>Payroll Configuration</h1>
         <p class="subtitle">Manage your billing and payment details.</p>
         <div class="tabs">
-          <a href="#" class="tab">Income</a>
-          <a href="#" class="tab active">Details</a>
+          <a href="#" class="tab active">Income</a>
+          <a href="#" class="tab">Details</a>
           <a href="#" class="tab">Allowance</a>
           <a href="#" class="tab">Reimbursements</a>
           <a href="#" class="tab">Employer's Contribution</a>
@@ -507,124 +501,50 @@
         </div>
       </div>
       <div class="mobile-body">
-        <div class="search-parent">
+        <div class="button-search">
           <div class="search-container">
-            <input type="text" placeholder="Search" />
-            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="🔍 Search" />
           </div>
-          <button class="add-deduction">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_61_1155)">
-                <path
-                  d="M10 4.16663V15.8333"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4.16669 10H15.8334"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_61_1155">
-                  <rect width="20" height="20" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            <span
-              style="
-                display: inline-block;
-                margin-top: 0.09rem;
-                margin-left: 0.5rem;
-              "
-              >Add Deduction</span
-            >
-          </button>
-        </div>
-        <div class="table-container">
-          <div class="table-container">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Type</th>
-                  <th>Tax Exemption</th>
-                  <th>Relief</th>
-                  <th>Created By</th>
-                  <th>Date Created</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Personal Allowance</td>
-                  <td>Percentage + Fixed</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
-                  <td>Marisa Kassulke</td>
-                  <td>Dec 1, 2022 06:00:16</td>
-                </tr>
-                <tr>
-                  <td>Pension</td>
-                  <td>Percentage Total</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
-                  <td>Marisa Kassulke</td>
-                  <td>Nov 1, 2022 06:00:16</td>
-                </tr>
-                <tr>
-                  <td>NHF</td>
-                  <td>Percentage Total</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
-                  <td>Marisa Kassulke</td>
-                  <td>Oct 1, 2022 06:00:16</td>
-                </tr>
-                <tr>
-                  <td>PAYE</td>
-                  <td>Tiered</td>
-                  <td>No</td>
-                  <td>No</td>
-                  <td>Marisa Kassulke</td>
-                  <td>Sep 1, 2022 06:00:16</td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- Pagination -->
-          </div>
-          <div class="pagination">
-            <div class="per-page">
-              <select>
-                <option>5/page</option>
-                <option>10/page</option>
-                <option>20/page</option>
-              </select>
-            </div>
-            <div class="pagination-controls">
-              <button class="page-button">Previous</button>
-              <button class="page-button active">1</button>
-              <button class="page-button">2</button>
-              <button class="page-button">3</button>
-              <button class="page-button">...</button>
-              <button class="page-button">8</button>
-              <button class="page-button">9</button>
-              <button class="page-button">10</button>
-              <button class="page-button">Next</button>
-            </div>
+
+          <!-- Buttons -->
+          <div class="button-container">
+            <button class="add-button">+ Add</button>
+            <button class="save-button">✔ Save</button>
           </div>
         </div>
 
-        <div class="pagination-info">Showing 1 to 4 of 4 entries</div>
+        <!-- Table -->
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Percentage</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Basic</td>
+              <td>50.00</td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+            <tr>
+              <td>Housing</td>
+              <td>38.00</td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+            <tr>
+              <td>Transport</td>
+              <td>10.00</td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+            <tr>
+              <td>New</td>
+              <td>02.00</td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
