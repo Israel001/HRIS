@@ -413,7 +413,6 @@ td {
   cursor: pointer;
 }
 
-/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -427,7 +426,6 @@ td {
   z-index: 1000;
 }
 
-/* Modal */
 .modal {
   background-color: #ffffff;
   padding: 20px 30px;
