@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll Configuration</title>
-    <link rel="stylesheet" href="/payment.css" />
+    <link rel="stylesheet" href="/onboarding-employees.css" />
   </head>
   <body>
     <div class="menu-toggle">☰</div>
@@ -101,7 +101,7 @@
           </ul>
         </li>
         <li>
-          <a href="#" class="menu-item" data-target="submenu-2"
+          <a href="#" class="menu-item open" data-target="submenu-2"
             ><i
               ><svg
                 width="24"
@@ -149,16 +149,16 @@
             </i>
             <span class="label2">Onboarding</span></a
           >
-          <ul class="submenu" id="submenu-2">
-            <li><a href="/onboarding-employees.html">Manage Employee</a></li>
+          <ul class="submenu open" id="submenu-2">
+            <li class="selected"><a href="/onboarding-employees.html">Manage Employees</a></li>
             <li><a href="/onboarding-offer.html">Offer Letter Template</a></li>
             <li><a href="#">Welcome Note</a></li>
-            <li><a href="#">Manage Currency</a></li>
-            <li><a href="#">Payroll Report</a></li>
+            <li><a href="#">Manage Organization</a></li>
+            <li><a href="#">Manage Form</a></li>
           </ul>
         </li>
         <li>
-          <a href="#" class="menu-item active open" data-target="submenu-3">
+          <a href="#" class="menu-item active" data-target="submenu-3">
             <span class="icon">
               <i
                 ><svg
@@ -201,8 +201,8 @@
             </span>
             <span class="label">Payroll</span>
           </a>
-          <ul class="submenu open" id="submenu-3">
-            <li class="selected"><a href="#">Payroll Configuration</a></li>
+          <ul class="submenu" id="submenu-3">
+            <li><a href="/index.html">Payroll Configuration</a></li>
             <li><a href="#">Employee Payroll</a></li>
             <li><a href="#">Manage Payment Cycle</a></li>
             <li><a href="#">Manage Currency</a></li>
@@ -331,7 +331,7 @@
           </ul>
         </li>
         <li>
-          <a href="#" class="menu-item"
+          <a href="#" class="menu-item" data-target="submenu-6"
             ><i
               ><svg
                 width="24"
@@ -374,6 +374,7 @@
             <li><a href="#">Manage Permissions</a></li>
             <li><a href="/administration-wallet.html">Wallet</a></li>
           </ul>
+        </li>
         </li>
       </ul>
 
@@ -545,18 +546,40 @@
             </svg>
           </span>
           <span class="divider">&gt;</span>
-          <span class="breadcrumb-item">Payroll Configuration</span>
+          <span class="breadcrumb-item">Manage Employees</span>
           <span class="divider">&gt;</span>
-          <span class="breadcrumb-item active">Deductions</span>
+          <span class="breadcrumb-item active">Full Time Employees</span>
         </div>
-        <h1>Payroll Configuration</h1>
+        <h1>Manage Employees</h1>
         <p class="subtitle">Manage your billing and payment details.</p>
+        <div class="invitation-import-new-container">
+          <button class="invitation-link">Send Invitation Link</button>
+          <button class="import">
+            <span
+              style="
+                display: inline-block;
+                margin-top: 0.09rem;
+                margin-right: 0.5rem;
+              "
+              >Import</span
+            >
+            <img src="/assets/dropdown.svg" alt="" />
+          </button>
+          <button class="add-new">
+            <img src="/assets/Plus.svg" alt="" />
+            <span
+              style="
+                display: inline-block;
+                margin-top: 0.09rem;
+                margin-left: 0.5rem;
+              "
+              >Add New</span
+            >
+          </button>
+        </div>
         <div class="tabs">
-          <a href="/payroll-income.html" class="tab">Income</a>
-          <a href="#" class="tab active">Details</a>
-          <a href="#" class="tab">Allowance</a>
-          <a href="#" class="tab">Reimbursements</a>
-          <a href="#" class="tab">Employer's Contribution</a>
+          <a href="#" class="tab active">Full Time Employee</a>
+          <a href="#" class="tab">Contract Employee</a>
         </div>
         <div class="dropdown">
           <button class="dropdown-toggle" onclick="toggleDropdown()">
@@ -596,91 +619,82 @@
             <input type="text" placeholder="Search" />
             <span class="search-icon">🔍</span>
           </div>
-          <button class="add-deduction">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_61_1155)">
-                <path
-                  d="M10 4.16663V15.8333"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4.16669 10H15.8334"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_61_1155">
-                  <rect width="20" height="20" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            <span
-              style="
-                display: inline-block;
-                margin-top: 0.09rem;
-                margin-left: 0.5rem;
-              "
-              >Add Deduction</span
-            >
-          </button>
         </div>
         <div class="table-container">
           <div class="scrollable-table">
             <table class="table">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Type</th>
-                  <th>Tax Exemption</th>
-                  <th>Relief</th>
+                  <th>Employee ID</th>
+                  <th>Name</th>
+                  <th>Email Address</th>
+                  <th>Status</th>
+                  <th>Currency</th>
+                  <th>Base Salary</th>
                   <th>Created By</th>
                   <th>Date Created</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Personal Allowance</td>
-                  <td>Percentage + Fixed</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
+                  <td>001</td>
+                  <td style="font-weight: 500">Jamiu Jimoh</td>
+                  <td style="font-weight: lighter">waleyinka55@gmail.com</td>
+                  <td>
+                    <span class="status-td">Active</span>
+                  </td>
+                  <td>NGN</td>
+                  <td>36,000,000.00</td>
                   <td>Marisa Kassulke</td>
-                  <td>Dec 1, 2022 06:00:16</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
                 </tr>
                 <tr>
-                  <td>Pension</td>
-                  <td>Percentage Total</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
+                  <td>002</td>
+                  <td style="font-weight: 500">Johnson Oluseyi</td>
+                  <td>joluseyi@mail.com</td>
+                  <td>
+                    <span class="status-td">Inactive</span>
+                  </td>
+                  <td>NGN</td>
+                  <td>36,000,000.00</td>
                   <td>Marisa Kassulke</td>
-                  <td>Nov 1, 2022 06:00:16</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
                 </tr>
                 <tr>
-                  <td>NHF</td>
-                  <td>Percentage Total</td>
-                  <td>Yes</td>
-                  <td>Yes</td>
+                  <td>003</td>
+                  <td style="font-weight: 500">Mayokun Nwekem</td>
+                  <td>mnwekem@gmail.comm</td>
+                  <td>
+                    <span class="status-td">Active</span>
+                  </td>
+                  <td>NGN</td>
+                  <td>36,000,000.00</td>
                   <td>Marisa Kassulke</td>
-                  <td>Oct 1, 2022 06:00:16</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
                 </tr>
                 <tr>
-                  <td>PAYE</td>
-                  <td>Tiered</td>
-                  <td>No</td>
-                  <td>No</td>
+                  <td>004</td>
+                  <td style="font-weight: 500">Charles Olusegun</td>
+                  <td>olusegunc21@mail.com</td>
+                  <td>
+                    <span class="status-td">Active</span>
+                  </td>
+                  <td>NGN</td>
+                  <td>36,000,000.00</td>
                   <td>Marisa Kassulke</td>
-                  <td>Sep 1, 2022 06:00:16</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
                 </tr>
               </tbody>
             </table>
