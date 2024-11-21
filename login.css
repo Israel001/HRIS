@@ -1,8 +1,12 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #3E923A;
+  --secondary-color: #EDF8ED;
 }
 
 body {
@@ -64,7 +68,7 @@ h2 {
   padding: 12px;
   font-size: 1rem;
   color: white;
-  background-color: #3E923A;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -80,7 +84,7 @@ h2 {
   display: block;
   margin-top: 15px;
   font-size: 0.9rem;
-  color: #3E923A;
+  color: var(--primary-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }

@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll Configuration</title>
-    <link rel="stylesheet" href="/payment.css" />
+    <link rel="stylesheet" href="/administration-security.css" />
   </head>
   <body>
     <div class="sidebar" id="sidebar">
       <div>
         <div class="logo-plus">
-          <img src="/assets/TPEO-Plus-Logo.svg" alt="TPEO LOGO">
+          <img src="/assets/TPEO-Plus-Logo.svg" alt="TPEO LOGO" />
         </div>
 
         <div>
@@ -121,15 +121,15 @@
             <span class="label2">Onboarding</span></a
           >
           <ul class="submenu" id="submenu-2">
-            <li><a href="/onboarding-employees.html">Manage Employee</a></li>
+            <li><a href="/onboarding-employees.html">Manage Employees</a></li>
             <li><a href="/onboarding-offer.html">Offer Letter Template</a></li>
             <li><a href="#">Welcome Note</a></li>
-            <li><a href="#">Manage Currency</a></li>
-            <li><a href="#">Payroll Report</a></li>
+            <li><a href="#">Manage Organization</a></li>
+            <li><a href="#">Manage Form</a></li>
           </ul>
         </li>
         <li>
-          <a href="#" class="menu-item active open" data-target="submenu-3">
+          <a href="#" class="menu-item active" data-target="submenu-3">
             <span class="icon">
               <i
                 ><svg
@@ -172,8 +172,8 @@
             </span>
             <span class="label">Payroll</span>
           </a>
-          <ul class="submenu open" id="submenu-3">
-            <li class="selected"><a href="#">Payroll Configuration</a></li>
+          <ul class="submenu" id="submenu-3">
+            <li><a href="/index.html">Payroll Configuration</a></li>
             <li><a href="#">Employee Payroll</a></li>
             <li><a href="#">Manage Payment Cycle</a></li>
             <li><a href="#">Manage Currency</a></li>
@@ -302,7 +302,7 @@
           </ul>
         </li>
         <li>
-          <a href="#" class="menu-item"
+          <a href="#" class="menu-item open" data-target="submenu-6"
             ><i
               ><svg
                 width="24"
@@ -336,15 +336,11 @@
             </i>
             <span class="label2"> Administration</span>
           </a>
-          <ul class="submenu" id="submenu-6">
+          <ul class="submenu open" id="submenu-6">
             <li><a href="#">Manage Users</a></li>
             <li><a href="#">Manage User Roles</a></li>
             <li><a href="#">Manage Positions</a></li>
-            <li>
-              <a href="/administration-appearance.html"
-                >System Configurations</a
-              >
-            </li>
+            <li class="selected"><a href="#">System Configurations</a></li>
             <li><a href="#">Audit Logs</a></li>
             <li><a href="#">Manage Permissions</a></li>
             <li><a href="/administration-wallet.html">Wallet</a></li>
@@ -499,47 +495,45 @@
             <!-- Replace with actual SVG or icon image -->
             <svg
               width="20"
-              height="20"
+              height="24"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                d="M7 11C7 10.4696 7.21071 9.96086 7.58579 9.58579C7.96086 9.21071 8.46957 9 9 9H19C19.5304 9 20.0391 9.21071 20.4142 9.58579C20.7893 9.96086 21 10.4696 21 11V17C21 17.5304 20.7893 18.0391 20.4142 18.4142C20.0391 18.7893 19.5304 19 19 19H9C8.46957 19 7.96086 18.7893 7.58579 18.4142C7.21071 18.0391 7 17.5304 7 17V11Z"
-                stroke="#4A5568"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 14C12 14.5304 12.2107 15.0391 12.5858 15.4142C12.9609 15.7893 13.4696 16 14 16C14.5304 16 15.0391 15.7893 15.4142 15.4142C15.7893 15.0391 16 14.5304 16 14C16 13.4696 15.7893 12.9609 15.4142 12.5858C15.0391 12.2107 14.5304 12 14 12C13.4696 12 12.9609 12.2107 12.5858 12.5858C12.2107 12.9609 12 13.4696 12 14Z"
-                stroke="#4A5568"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M17 9V7C17 6.46957 16.7893 5.96086 16.4142 5.58579C16.0391 5.21071 15.5304 5 15 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V13C3 13.5304 3.21071 14.0391 3.58579 14.4142C3.96086 14.7893 4.46957 15 5 15H7"
-                stroke="#4A5568"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+              <g clip-path="url(#clip0_61_2765)">
+                <path
+                  d="M10.325 4.317C10.751 2.561 13.249 2.561 13.675 4.317C13.7389 4.5808 13.8642 4.82578 14.0407 5.032C14.2172 5.23822 14.4399 5.39985 14.6907 5.50375C14.9414 5.60764 15.2132 5.65085 15.4838 5.62987C15.7544 5.60889 16.0162 5.5243 16.248 5.383C17.791 4.443 19.558 6.209 18.618 7.753C18.4769 7.98466 18.3924 8.24634 18.3715 8.51677C18.3506 8.78721 18.3938 9.05877 18.4975 9.30938C18.6013 9.55999 18.7627 9.78258 18.9687 9.95905C19.1747 10.1355 19.4194 10.2609 19.683 10.325C21.439 10.751 21.439 13.249 19.683 13.675C19.4192 13.7389 19.1742 13.8642 18.968 14.0407C18.7618 14.2172 18.6001 14.4399 18.4963 14.6907C18.3924 14.9414 18.3491 15.2132 18.3701 15.4838C18.3911 15.7544 18.4757 16.0162 18.617 16.248C19.557 17.791 17.791 19.558 16.247 18.618C16.0153 18.4769 15.7537 18.3924 15.4832 18.3715C15.2128 18.3506 14.9412 18.3938 14.6906 18.4975C14.44 18.6013 14.2174 18.7627 14.0409 18.9687C13.8645 19.1747 13.7391 19.4194 13.675 19.683C13.249 21.439 10.751 21.439 10.325 19.683C10.2611 19.4192 10.1358 19.1742 9.95929 18.968C9.7828 18.7618 9.56011 18.6001 9.30935 18.4963C9.05859 18.3924 8.78683 18.3491 8.51621 18.3701C8.24559 18.3911 7.98375 18.4757 7.752 18.617C6.209 19.557 4.442 17.791 5.382 16.247C5.5231 16.0153 5.60755 15.7537 5.62848 15.4832C5.64942 15.2128 5.60624 14.9412 5.50247 14.6906C5.3987 14.44 5.23726 14.2174 5.03127 14.0409C4.82529 13.8645 4.58056 13.7391 4.317 13.675C2.561 13.249 2.561 10.751 4.317 10.325C4.5808 10.2611 4.82578 10.1358 5.032 9.95929C5.23822 9.7828 5.39985 9.56011 5.50375 9.30935C5.60764 9.05859 5.65085 8.78683 5.62987 8.51621C5.60889 8.24559 5.5243 7.98375 5.383 7.752C4.443 6.209 6.209 4.442 7.753 5.382C8.753 5.99 10.049 5.452 10.325 4.317Z"
+                  stroke="#7A7A97"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9 12C9 12.7956 9.31607 13.5587 9.87868 14.1213C10.4413 14.6839 11.2044 15 12 15C12.7956 15 13.5587 14.6839 14.1213 14.1213C14.6839 13.5587 15 12.7956 15 12C15 11.2044 14.6839 10.4413 14.1213 9.87868C13.5587 9.31607 12.7956 9 12 9C11.2044 9 10.4413 9.31607 9.87868 9.87868C9.31607 10.4413 9 11.2044 9 12Z"
+                  stroke="#7A7A97"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_61_2765">
+                  <rect width="24" height="24" fill="white" />
+                </clipPath>
+              </defs>
             </svg>
           </span>
           <span class="divider">&gt;</span>
-          <span class="breadcrumb-item">Payroll Configuration</span>
+          <span class="breadcrumb-item">Administration</span>
           <span class="divider">&gt;</span>
-          <span class="breadcrumb-item active">Deductions</span>
+          <span class="breadcrumb-item active">System Administration</span>
         </div>
-        <h1>Payroll Configuration</h1>
+        <h1>System Configuration</h1>
         <p class="subtitle">Manage your billing and payment details.</p>
         <div class="tabs">
-          <a href="/payroll-income.html" class="tab">Income</a>
-          <a href="/index.html" class="tab active">Details</a>
-          <a href="/payroll-allowance.html" class="tab">Allowance</a>
-          <a href="#" class="tab">Reimbursements</a>
-          <a href="#" class="tab">Employer's Contribution</a>
+          <a href="/administration-appearance.html" class="tab">Appearance</a>
+          <a href="/administration-information.html" class="tab">Information</a>
+          <a href="/administration-security.html" class="tab active">Security</a>
         </div>
         <div class="dropdown">
           <button class="dropdown-toggle" onclick="toggleDropdown()">
@@ -574,202 +568,65 @@
         </div>
       </div>
       <div class="mobile-body">
-        <div class="search-parent">
-          <div class="search-container">
-            <input type="text" placeholder="Search" />
-            <span class="search-icon"><img src="/assets/Search2.svg" alt=""></span>
-          </div>
-          <button class="add-deduction">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_61_1155)">
-                <path
-                  d="M10 4.16663V15.8333"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4.16669 10H15.8334"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_61_1155">
-                  <rect width="20" height="20" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            <span
-              style="
-                display: inline-block;
-                margin-top: 0.09rem;
-                margin-left: 0.5rem;
-              "
-              >Add Deduction</span
-            >
-          </button>
-        </div>
-        <div class="table-container">
-          <table class="custom-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Amount</th>
-                <th>Created By</th>
-                <th>Date Created</th>
-                <th>Updated By</th>
-                <th>Date Updated</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="pagination">
-            <div class="per-page">
-              <select>
-                <option>5/page</option>
-                <option>10/page</option>
-                <option>20/page</option>
-              </select>
+        <div>
+          <div class="container">
+            <div class="info-header">
+              <div class="info-item">
+                <p>Last Updated By</p>
+                <h4>Marisa Kassuike</h4>
+              </div>
+              <div class="info-item">
+                <p>Date Updated</p>
+                <h4>2023-08-02</h4>
+              </div>
+              <div class="info-item">
+                <p>Time Updated</p>
+                <h4>03:05:22</h4>
+              </div>
             </div>
-            <div class="pagination-controls">
-              <button class="page-button">Previous</button>
-              <button class="page-button active">1</button>
-              <button class="page-button">2</button>
-              <button class="page-button">3</button>
-              <button class="page-button">...</button>
-              <button class="page-button">8</button>
-              <button class="page-button">9</button>
-              <button class="page-button">10</button>
-              <button class="page-button">Next</button>
-            </div>
-          </div>
-        </div>
 
-        <div class="pagination-info">Showing 1 to 4 of 4 entries</div>
+            <div>
+              <div class="title-checkbox-container">
+                <p class="section-title">Approvals</p>
+                <div class="toggle-switch">
+                  <label>
+                    <input type="checkbox" checked />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="approvals">
+                <div class="approval-item">
+                  <input type="checkbox" id="disable-author-approval" checked />
+                  <label for="disable-author-approval"
+                    >Disable Author Approval</label
+                  >
+                </div>
+                <div class="approval-item">
+                  <input type="checkbox" id="employee-information" checked />
+                  <label for="employee-information">Employee Information</label>
+                </div>
+                <div class="approval-item">
+                  <input type="checkbox" id="payment-cycle" />
+                  <label for="payment-cycle">Payment Cycle</label>
+                </div>
+                <div class="approval-item">
+                  <input type="checkbox" id="employees-payroll" />
+                  <label for="employees-payroll">Employees Payroll</label>
+                </div>
+                <div class="approval-item">
+                  <input type="checkbox" id="organization-information" />
+                  <label for="organization-information"
+                    >Organization Information</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="update-button-container">
+          <button class="update-button">Update</button>
+        </div>
       </div>
     </div>
 
