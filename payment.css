@@ -413,6 +413,7 @@ td {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 40%;
 }
 
 .user-avatar {
@@ -933,7 +934,7 @@ td {
   .table-container {
     width: 750px;
   }
-  
+
   .dropdown {
     display: block;
   }

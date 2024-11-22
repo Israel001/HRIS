@@ -532,17 +532,24 @@
         <p class="subtitle">Manage your billing and payment details.</p>
         <div class="invitation-import-new-container">
           <button class="invitation-link">Send Invitation Link</button>
-          <button class="import">
-            <span
-              style="
-                display: inline-block;
-                margin-top: 0.09rem;
-                margin-right: 0.5rem;
-              "
-              >Import</span
-            >
-            <img src="/assets/dropdown.svg" alt="" />
-          </button>
+          <div class="dropdown-container2">
+            <button class="import dropdown-toggle2">
+              <span
+                style="
+                  display: inline-block;
+                  margin-top: 0.09rem;
+                  margin-right: 0.5rem;
+                "
+              >
+                Import
+              </span>
+              <img src="/assets/dropdown.svg" alt="" />
+            </button>
+            <ul class="dropdown-list2 hidden">
+              <li>Upload Import File</li>
+              <li>Create Template</li>
+            </ul>
+          </div>
           <button class="add-new">
             <img src="/assets/Plus.svg" alt="" />
             <span
@@ -881,6 +888,21 @@
             function closeDetails() {
                 document.getElementById("detailsPanel").classList.remove("open");
             }
+
+          document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.querySelector('.dropdown-toggle2');
+            const dropdownList = document.querySelector('.dropdown-list2');
+
+            toggleButton.addEventListener('click', (e) => {
+              e.stopPropagation(); 
+              dropdownList.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', () => {
+              dropdownList.classList.add('hidden');
+            });
+          });
+
   </script>
 
   </body>
