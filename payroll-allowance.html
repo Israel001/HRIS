@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll Configuration</title>
-    <link rel="stylesheet" href="/payroll-allowance.css" />
+    <link rel="stylesheet" href="/bulk-css.css" />
   </head>
   <body>
-    <div class="menu-toggle">☰</div>
     <div class="sidebar" id="sidebar">
       <div>
         <div class="logo-plus">
-          <img src="/assets/TPEO-Plus-Logo.svg" alt="TPEO LOGO">
+          <img src="/assets/TPEO-Plus-Logo.svg" alt="TPEO LOGO" />
         </div>
 
         <div>
@@ -341,7 +340,11 @@
             <li><a href="#">Manage Users</a></li>
             <li><a href="#">Manage User Roles</a></li>
             <li><a href="#">Manage Positions</a></li>
-            <li><a href="/administration-appearance.html">System Configurations</a></li>
+            <li>
+              <a href="/administration-appearance.html"
+                >System Configurations</a
+              >
+            </li>
             <li><a href="#">Audit Logs</a></li>
             <li><a href="#">Manage Permissions</a></li>
             <li><a href="/administration-wallet.html">Wallet</a></li>
@@ -482,6 +485,14 @@
     <div class="overlay hidden"></div>
 
     <div class="main-content" id="main-content">
+      <div class="mobile-head">
+        <div>
+          <img src="/assets/Talent Peo Logo.svg" alt="" style="height: 40px" />
+        </div>
+        <div>
+          <div class="menu-toggle">☰</div>
+        </div>
+      </div>
       <div class="mobile-header">
         <div class="breadcrumb">
           <span class="icon">
@@ -532,20 +543,26 @@
         </div>
         <div class="dropdown">
           <button class="dropdown-toggle" onclick="toggleDropdown()">
-            <span id="selected-value">Deductions</span>
+            <span id="selected-value">Allowance</span>
             <span class="arrow"></span>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" onclick="selectOption(this, 'Income')">Income</a>
+              <a
+                href="/payroll-income.html"
+                onclick="selectOption(this, 'Income')"
+                >Income</a
+              >
             </li>
             <li>
-              <a href="#" onclick="selectOption(this, 'Deductions')"
+              <a href="/index.html" onclick="selectOption(this, 'Deductions')"
                 >Deductions</a
               >
             </li>
             <li class="selected">
-              <a href="#" onclick="selectOption(this, 'Allowance')"
+              <a
+                href="/payroll-allowance.html"
+                onclick="selectOption(this, 'Allowance')"
                 >Allowance</a
               >
             </li>
@@ -566,7 +583,9 @@
         <div class="search-parent">
           <div class="search-container">
             <input type="text" placeholder="Search" />
-            <span class="search-icon"><img src="/assets/Search2.svg" alt=""></span>
+            <span class="search-icon"
+              ><img src="/assets/Search2.svg" alt=""
+            /></span>
           </div>
           <button class="add-deduction">
             <svg
@@ -609,133 +628,135 @@
           </button>
         </div>
         <div class="table-container">
-          <table class="custom-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Amount</th>
-                <th>Created By</th>
-                <th>Date Created</th>
-                <th>Updated By</th>
-                <th>Date Updated</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="borderless-td">Allowance</td>
-                <td>120,000.00</td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>Marisa Kassulke</td>
-                <td>
-                  Dec 1, 2022 <br />
-                  06:00:16
-                </td>
-                <td>
-                  <div class="action-btn">
-                    <button class="delete-btn">
-                      <img src="assets/trash-01.svg" alt="Delete" />
-                    </button>
-                    <button class="delete-btn">
-                      <img
-                        src="assets/edit.svg"
-                        onclick="openModal()"
-                        alt="Edit"
-                      />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="scrollable-table">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Amount</th>
+                  <th>Created By</th>
+                  <th>Date Created</th>
+                  <th>Updated By</th>
+                  <th>Date Updated</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="borderless-td">Allowance</td>
+                  <td>120,000.00</td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>
+                    <div class="action-btn">
+                      <button class="delete-btn">
+                        <img src="assets/trash-01.svg" alt="Delete" />
+                      </button>
+                      <button class="delete-btn">
+                        <img
+                          src="assets/edit.svg"
+                          onclick="openModal()"
+                          alt="Edit"
+                        />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="borderless-td">Allowance</td>
+                  <td>120,000.00</td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>
+                    <div class="action-btn">
+                      <button class="delete-btn">
+                        <img src="assets/trash-01.svg" alt="Delete" />
+                      </button>
+                      <button class="delete-btn">
+                        <img
+                          src="assets/edit.svg"
+                          onclick="openModal()"
+                          alt="Edit"
+                        />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="borderless-td">Allowance</td>
+                  <td>120,000.00</td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>
+                    <div class="action-btn">
+                      <button class="delete-btn">
+                        <img src="assets/trash-01.svg" alt="Delete" />
+                      </button>
+                      <button class="delete-btn">
+                        <img
+                          src="assets/edit.svg"
+                          onclick="openModal()"
+                          alt="Edit"
+                        />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="borderless-td">Allowance</td>
+                  <td>120,000.00</td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>Marisa Kassulke</td>
+                  <td>
+                    Dec 1, 2022 <br />
+                    06:00:16
+                  </td>
+                  <td>
+                    <div class="action-btn">
+                      <button class="delete-btn">
+                        <img src="assets/trash-01.svg" alt="Delete" />
+                      </button>
+                      <button class="delete-btn">
+                        <img
+                          src="assets/edit.svg"
+                          onclick="openModal()"
+                          alt="Edit"
+                        />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div class="pagination">
             <div class="per-page">
               <select>
@@ -769,9 +790,9 @@
             <h2>Update Allowance</h2>
           </div>
           <div class="modal-body">
-            <p class="modal-subtitle">
+            <!-- <p class="modal-subtitle">
               Are you sure you want to delete this item?
-            </p>
+            </p> -->
             <form id="updateForm" class="modal-form">
               <label for="title" class="form-label">Title*</label>
               <input

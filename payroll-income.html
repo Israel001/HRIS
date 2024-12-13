@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll Configuration</title>
-    <link rel="stylesheet" href="/payroll-income.css" />
+    <link rel="stylesheet" href="/bulk-css.css" />
   </head>
   <body>
     <div class="sidebar" id="sidebar">
@@ -539,20 +539,20 @@
         </div>
         <div class="dropdown">
           <button class="dropdown-toggle" onclick="toggleDropdown()">
-            <span id="selected-value">Deductions</span>
+            <span id="selected-value">Income</span>
             <span class="arrow"></span>
           </button>
           <ul class="dropdown-menu">
-            <li>
-              <a href="#" onclick="selectOption(this, 'Income')">Income</a>
-            </li>
             <li class="selected">
-              <a href="#" onclick="selectOption(this, 'Deductions')"
+              <a href="/payroll-income.html" onclick="selectOption(this, 'Income')">Income</a>
+            </li>
+            <li>
+              <a href="/index.html" onclick="selectOption(this, 'Deductions')"
                 >Deductions</a
               >
             </li>
             <li>
-              <a href="#" onclick="selectOption(this, 'Allowance')"
+              <a href="/payroll-allowance.html" onclick="selectOption(this, 'Allowance')"
                 >Allowance</a
               >
             </li>
@@ -646,9 +646,10 @@
         </div>
 
         <!-- Table -->
-        <table class="custom-table">
-          <thead>
-            <tr>
+        <div class="scrollable-table">
+          <table class="custom-table">
+            <thead>
+              <tr>
               <th>Title</th>
               <th>Percentage</th>
             </tr>
@@ -689,9 +690,10 @@
                   <img src="assets/trash-01.svg" alt="" />
                 </button>
               </td>
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
