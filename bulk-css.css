@@ -280,6 +280,7 @@ hr {
   padding: 30px;
   margin-left: 270px;
   transition: margin-left 0.3s ease-in-out;
+  max-width: 80vw;
 }
 
 .main-content.adjusted {
