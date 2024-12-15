@@ -164,6 +164,10 @@ body {
   padding-left: 20px;
 }
 
+.sidebar.collapsed .logo-plus {
+  display: none;
+}
+
 .sidebar.collapsed .label {
   display: none;
 }
@@ -280,7 +284,7 @@ hr {
   padding: 30px;
   margin-left: 270px;
   transition: margin-left 0.3s ease-in-out;
-  max-width: 80vw;
+  width: 80vw;
 }
 
 .main-content.adjusted {
@@ -908,6 +912,7 @@ td {
   .main-content {
     margin-left: 0;
     padding: 5px;
+    width: 100vw;
   }
 
   .mobile-body {
