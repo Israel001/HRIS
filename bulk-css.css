@@ -95,6 +95,14 @@ body {
   width: 100%;
 }
 
+.custom-table tbody td:last-child,
+.custom-table thead th:last-child {
+  position: sticky;
+  right: 0; /* Stick to the right of the table */
+  background-color: #fff; /* Match the background to avoid transparency */
+  z-index: 1; /* Ensure it stays on top of content */
+}
+
 .custom-table th,
 .custom-table td {
   min-width: 150px;
@@ -106,6 +114,15 @@ body {
 .custom-table thead {
   background-color: #f9fafb;
 }
+
+.custom-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9;
+  z-index: 2; /* Ensure headers appear above scrolling content */
+}
+
+
 
 .custom-table tbody tr:nth-child(even) {
   background-color: #f7f9fb;
@@ -144,18 +161,6 @@ body {
 
 .borderless-td:not(:last-child) {
   border-right: 1px solid #eaecf0;
-}
-
-.delete-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: #555;
-}
-
-.delete-btn:hover {
-  color: #dc3545;
 }
 
 .sidebar.collapsed {
@@ -349,6 +354,7 @@ h1 {
 }
 
 .scrollable-table {
+  display: inline-block;
   overflow-x: auto;
   border: 1px solid #ddd;
   border-radius: 8px;
