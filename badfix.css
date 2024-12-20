@@ -89,18 +89,19 @@ body {
 
 /* Table */
 .custom-table {
+  position: relative;
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
-  width: 77vw;
+  width: 100%;
 }
 
 .custom-table tbody td:last-child,
 .custom-table thead th:last-child {
-  position: sticky;
+  position: fixed;
   right: 0; /* Stick to the right of the table */
   background-color: #fff; /* Match the background to avoid transparency */
-  z-index: 1; /* Ensure it stays on top of content */
+  z-index: 5; /* Ensure it stays on top of content */
 }
 
 .custom-table th,
@@ -117,17 +118,8 @@ body {
 
 .custom-table thead th {
   position: sticky;
-  top: 0;
   background-color: #f9f9f9;
   z-index: 2; /* Ensure headers appear above scrolling content */
-}
-
-.disabled-td{
-    background-color: #f7f9fb;
-}
-
-.undisabled-td{
-    background-color: #fff;
 }
 
 .custom-table tbody tr:nth-child(even) {
@@ -146,22 +138,6 @@ body {
 
 .custom-table td:last-child {
   text-align: center;
-}
-
-.custom-input {
-  width: 60%;
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid #D0D5DD;
-  border-radius: 4px;
-  box-sizing: border-box;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.custom-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  outline: none;
 }
 
 .delete-btn {
@@ -381,6 +357,7 @@ h1 {
   border: 1px solid #ddd;
   border-radius: 8px;
   max-width: 100vw;
+  position: relative;
 }
 
 .table-container {
@@ -887,36 +864,6 @@ td {
 }
 
 .mobile-head {
-  display: none;
-}
-
-.dropdown-list2 {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  width: max-content;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-.dropdown-list2 li {
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-weight: 300;
-  font-size: small;
-}
-
-.dropdown-list2 li:hover {
-  background-color: #f0f0f0;
-}
-
-.hidden{
   display: none;
 }
 
@@ -1436,42 +1383,6 @@ td {
   color: #344054;
   font-size: 14px;
 }
-
-.dropdown-container2 {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-list2 {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  width: max-content;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-.dropdown-list2 li {
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-weight: 300;
-  font-size: small;
-}
-
-.dropdown-list2 li:hover {
-  background-color: #f0f0f0;
-}
-
-.hidden{
-  display: none;
-}
-
 
 /* Administration-Appearance */
 
