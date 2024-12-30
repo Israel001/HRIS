@@ -1388,6 +1388,7 @@ td {
   overflow-y: auto;
   transition: right 0.3s ease-in-out;
   padding: 30px;
+  z-index: 3000;
 }
 
 .details-panel.open {

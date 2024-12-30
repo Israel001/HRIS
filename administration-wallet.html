@@ -153,7 +153,7 @@
         </div>
       </div>
       <div id="sidebar-toggle" class="sidebar-toggle">
-        <button id="toggleButton" class="toggle-btn" onclick="toggleButton()">
+        <button id="toggleButton" class="toggle-btn">
           <span>
             <img src="assets/chevron-down.png" alt="Arrow-left" />
           </span>
@@ -192,7 +192,7 @@
             <p>Balance</p>
             <p class="amount">₦120,750,000.00</p>
           </div>
-          <div>
+          <div class="addWallet">
             <button class="add-wallet">
               <img src="/assets/Plus.svg" alt="" />
               <span
@@ -201,7 +201,6 @@
                   margin-top: 0.09rem;
                   margin-left: 0.5rem;
                 "
-                onclick="openModal()"
                 >Add Wallet</span
               >
             </button>
@@ -298,7 +297,7 @@
       <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
           <!-- Close Button -->
-          <button class="modal-close" onclick="closeModal()">✕</button>
+          <button class="modal-close" >✕</button>
 
           <div class="modal-header">
             <h2>Fund Wallet</h2>
@@ -320,7 +319,6 @@
                   type="button"
                   class="btn btn-secondary"
                   id="closeModal"
-                  onclick="closeModal()"
                 >
                   Close
                 </button>
@@ -335,197 +333,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".menu-toggle").click(function () {
-          $(".sidebar").toggleClass("open");
-          $(".main-content").toggleClass("sidebar-open");
-          $(".menu-toggle").toggleClass("hidden");
-          $(".overlay").toggleClass("hidden");
-          $(".menu-toggle-close").toggleClass("color-white");
-        });
-
-        $(window).resize(function () {
-          if ($(window).width() > 768) {
-            $(".sidebar").removeClass("open");
-            $(".main-content").removeClass("sidebar-open");
-            $(".menu-toggle-close").addClass("hidden");
-            $(".overlay").addClass("hidden");
-          }
-        });
-
-        $(document).click(function (event) {
-          if (
-            !$(event.target).closest(
-              ".sidebar, .menu-toggle.open, .menu-toggle"
-            ).length
-          ) {
-            $(".sidebar").removeClass("open");
-            $(".menu-toggle").removeClass("hidden");
-            $(".menu-toggle-close").addClass("hidden");
-            $(".overlay").addClass("hidden");
-            $(".menu-toggle-close").removeClass("color-white");
-          }
-        });
-
-        $(".sidebar").click(function (event) {
-          event.stopPropagation();
-        });
-      });
-    </script>
-    <script>
-      function openModal() {
-        document.getElementById("modalOverlay").style.display = "flex";
-      }
-
-      // Close Modal Function
-      function closeModal() {
-        document.getElementById("modalOverlay").style.display = "none";
-      }
-      function toggleDropdown() {
-        const dropdown = document.querySelector(".dropdown");
-        const arrow = document.querySelector(".arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function togglePaginationDropdown() {
-        const dropdown = document.querySelector(".pagination-dropdown");
-        const arrow = document.querySelector(".pagination-arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function selectPaginationOption(element, option) {
-        document.getElementById("selected-pagination-value").textContent =
-          option;
-        const allItems = document.querySelectorAll(
-          ".pagination-dropdown-menu li"
-        );
-        allItems.forEach((item) => item.classList.remove("selected"));
-        element.parentElement.classList.add("selected");
-        const dropdown = document.querySelector(".pagination-dropdown");
-        dropdown.classList.remove("active");
-        const arrow = document.querySelector(".pagination-arrow");
-        arrow.classList.remove("active");
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        toggleButton();
-      });
-
-      function toggleButton() {
-        const button = document.getElementById("toggleButton");
-        const sidebar = document.getElementById("sidebar");
-        const mainContent = document.getElementById("main-content");
-
-        if (button) {
-          // Ensure toggleSidebar is only added once
-          button.addEventListener("click", toggleSidebar);
-        }
-
-        function toggleSidebar() {
-          sidebar.classList.toggle("collapsed");
-          mainContent.classList.toggle("adjusted");
-          button.classList.toggle("collapsed");
-        }
-      }
-
-      function selectOption(element, option) {
-        // Set the selected option as the button's value
-        document.getElementById("selected-value").textContent = option;
-
-        // Remove the 'selected' class from any previously selected item
-        const allItems = document.querySelectorAll(".dropdown-menu li");
-        allItems.forEach((item) => item.classList.remove("selected"));
-
-        // Add the 'selected' class to the clicked item
-        element.parentElement.classList.add("selected");
-
-        // Close the dropdown after selection
-        const dropdown = document.querySelector(".dropdown");
-        dropdown.classList.remove("active");
-
-        // Optionally, you can change the arrow's direction back
-        const arrow = document.querySelector(".arrow");
-        arrow.classList.remove("active");
-      }
-
-      const menuItems = document.querySelectorAll(".menu-item");
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetSubmenu = document.getElementById(
-            this.getAttribute("data-target")
-          );
-          targetSubmenu.classList.toggle("open");
-          this.classList.toggle("open");
-          document.querySelectorAll(".submenu").forEach((submenu) => {
-            if (submenu !== targetSubmenu) {
-              submenu.classList.remove("open");
-              submenu.previousElementSibling.classList.remove("open");
-            }
-          });
-        });
-      });
-
-      function updateColor(inputId, circleId) {
-        const colorInput = document.getElementById(inputId);
-        const colorCircle = document.getElementById(circleId);
-        const colorCode = colorInput.value;
-
-        // Validate and apply the color
-        if (/^#[0-9A-Fa-f]{6}$/i.test(colorCode)) {
-          colorCircle.style.backgroundColor = colorCode;
-        } else {
-          colorCircle.style.backgroundColor = "transparent"; // Default when invalid
-        }
-      }
-
-      // Initialize with the default values
-      updateColor("primaryInput", "primaryCircle");
-      updateColor("secondaryInput", "secondaryCircle");
-    </script>
-    <script>
-      const fileUpload = document.getElementById("fileUpload");
-      const fileInput = document.getElementById("fileInput");
-
-      // Click to open file picker
-      fileUpload.addEventListener("click", () => {
-        fileInput.click();
-      });
-
-      // Drag-and-drop events
-      fileUpload.addEventListener("dragover", (event) => {
-        event.preventDefault();
-        fileUpload.classList.add("drag-over");
-      });
-
-      fileUpload.addEventListener("dragleave", () => {
-        fileUpload.classList.remove("drag-over");
-      });
-
-      fileUpload.addEventListener("drop", (event) => {
-        event.preventDefault();
-        fileUpload.classList.remove("drag-over");
-
-        const files = event.dataTransfer.files;
-
-        // If files are dropped, set them to the input element
-        if (files.length) {
-          fileInput.files = files;
-          alert(`You uploaded: ${files[0].name}`);
-        }
-      });
-
-      // File selection using the input
-      fileInput.addEventListener("change", () => {
-        if (fileInput.files.length) {
-          alert(`You selected: ${fileInput.files[0].name}`);
-        }
-      });
-    </script>
+    <script src="./bulk-js.js"></script>
   </body>
 </html>

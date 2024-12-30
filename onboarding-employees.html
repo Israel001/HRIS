@@ -152,7 +152,7 @@
         </div>
       </div>
       <div id="sidebar-toggle" class="sidebar-toggle">
-        <button id="toggleButton" class="toggle-btn" onclick="toggleButton()">
+        <button id="toggleButton" class="toggle-btn">
           <span>
             <img src="assets/chevron-down.png" alt="Arrow-left" />
           </span>
@@ -222,31 +222,31 @@
           <a href="#" class="tab">Contract Employee</a>
         </div>
         <div class="dropdown">
-          <button class="dropdown-toggle" onclick="toggleDropdown()">
+          <button class="dropdown-toggle">
             <span id="selected-value">Deductions</span>
             <span class="arrow"></span>
           </button>
           <ul class="dropdown-menu">
             <li>
-              <a href="#" onclick="selectOption(this, 'Income')">Income</a>
+              <a href="#">Income</a>
             </li>
             <li class="selected">
-              <a href="#" onclick="selectOption(this, 'Deductions')"
+              <a href="#"
                 >Deductions</a
               >
             </li>
             <li>
-              <a href="#" onclick="selectOption(this, 'Allowance')"
+              <a href="#"
                 >Allowance</a
               >
             </li>
             <li>
-              <a href="#" onclick="selectOption(this, 'Reimbursement')"
+              <a href="#"
                 >Reimbursement</a
               >
             </li>
             <li>
-              <a href="#" onclick="selectOption('Employer\'s Contribution')"
+              <a href="#"
                 >Employer's Contribution</a
               >
             </li>
@@ -278,7 +278,7 @@
               <tbody>
                 <tr>
                   <td>001</td>
-                  <td style="font-weight: 500; cursor: pointer;" onclick="openDetails()">Jamiu Jimoh</td>
+                  <td style="font-weight: 500; cursor: pointer;" class="detailsPanel">Jamiu Jimoh</td>
                   <td style="font-weight: lighter">waleyinka55@gmail.com</td>
                   <td>
                     <span class="status-active-td">Active</span>
@@ -293,7 +293,7 @@
                 </tr>
                 <tr>
                   <td>002</td>
-                  <td style="font-weight: 500; cursor: pointer;" onclick="openDetails()">Johnson Oluseyi</td>
+                  <td style="font-weight: 500; cursor: pointer;" class="detailsPanel">Johnson Oluseyi</td>
                   <td>joluseyi@mail.com</td>
                   <td>
                     <span class="status-inactive-td">Inactive</span>
@@ -308,7 +308,7 @@
                 </tr>
                 <tr>
                   <td>003</td>
-                  <td style="font-weight: 500; cursor: pointer;" onclick="openDetails()">Mayokun Nwekem</td>
+                  <td style="font-weight: 500; cursor: pointer;" class="detailsPanel">Mayokun Nwekem</td>
                   <td>mnwekem@gmail.comm</td>
                   <td>
                     <span class="status-active-td">Active</span>
@@ -323,7 +323,7 @@
                 </tr>
                 <tr>
                   <td>004</td>
-                  <td style="font-weight: 500; cursor: pointer;" onclick="openDetails()">Charles Olusegun</td>
+                  <td style="font-weight: 500; cursor: pointer;" class="detailsPanel">Charles Olusegun</td>
                   <td>olusegunc21@mail.com</td>
                   <td>
                     <span class="status-active-td">Active</span>
@@ -368,7 +368,7 @@
         <!-- Header -->
         <div class="details-header">
             <h2>Employee Details</h2>
-            <button class="details-close-btn" onclick="closeDetails()">
+            <button class="details-close-btn">
                 <img src="/assets/Close.svg" alt="">
             </button>
         </div>
@@ -445,120 +445,7 @@
         });
       });
     </script>
-    <script>
-      function toggleDropdown() {
-        const dropdown = document.querySelector(".dropdown");
-        const arrow = document.querySelector(".arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function togglePaginationDropdown() {
-        const dropdown = document.querySelector(".pagination-dropdown");
-        const arrow = document.querySelector(".pagination-arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function selectPaginationOption(element, option) {
-        document.getElementById("selected-pagination-value").textContent =
-          option;
-        const allItems = document.querySelectorAll(
-          ".pagination-dropdown-menu li"
-        );
-        allItems.forEach((item) => item.classList.remove("selected"));
-        element.parentElement.classList.add("selected");
-        const dropdown = document.querySelector(".pagination-dropdown");
-        dropdown.classList.remove("active");
-        const arrow = document.querySelector(".pagination-arrow");
-        arrow.classList.remove("active");
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        toggleButton();
-      });
-
-      function toggleButton() {
-        const button = document.getElementById("toggleButton");
-        const sidebar = document.getElementById("sidebar");
-        const mainContent = document.getElementById("main-content");
-
-        if (button) {
-          // Ensure toggleSidebar is only added once
-          button.addEventListener("click", toggleSidebar);
-        }
-
-        function toggleSidebar() {
-          sidebar.classList.toggle("collapsed");
-          mainContent.classList.toggle("adjusted");
-          button.classList.toggle("collapsed");
-        }
-      }
-
-      function selectOption(element, option) {
-        // Set the selected option as the button's value
-        document.getElementById("selected-value").textContent = option;
-
-        // Remove the 'selected' class from any previously selected item
-        const allItems = document.querySelectorAll(".dropdown-menu li");
-        allItems.forEach((item) => item.classList.remove("selected"));
-
-        // Add the 'selected' class to the clicked item
-        element.parentElement.classList.add("selected");
-
-        // Close the dropdown after selection
-        const dropdown = document.querySelector(".dropdown");
-        dropdown.classList.remove("active");
-
-        // Optionally, you can change the arrow's direction back
-        const arrow = document.querySelector(".arrow");
-        arrow.classList.remove("active");
-      }
-
-      const menuItems = document.querySelectorAll(".menu-item");
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetSubmenu = document.getElementById(
-            this.getAttribute("data-target")
-          );
-          targetSubmenu.classList.toggle("open");
-          this.classList.toggle("open");
-          document.querySelectorAll(".submenu").forEach((submenu) => {
-            if (submenu !== targetSubmenu) {
-              submenu.classList.remove("open");
-              submenu.previousElementSibling.classList.remove("open");
-            }
-          });
-        });
-      });
-    </script>
-    <script>
-            function openDetails() {
-                document.getElementById("detailsPanel").classList.add("open");
-            }
-
-            function closeDetails() {
-                document.getElementById("detailsPanel").classList.remove("open");
-            }
-
-          document.addEventListener('DOMContentLoaded', () => {
-            const toggleButton = document.querySelector('.dropdown-toggle2');
-            const dropdownList = document.querySelector('.dropdown-list2');
-
-            toggleButton.addEventListener('click', (e) => {
-              e.stopPropagation(); 
-              dropdownList.classList.toggle('hidden');
-            });
-
-            document.addEventListener('click', () => {
-              dropdownList.classList.add('hidden');
-            });
-          });
-
-  </script>
+    <script src="./bulk-js.js"></script>
 
   </body>
 </html>

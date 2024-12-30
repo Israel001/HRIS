@@ -153,7 +153,7 @@
         </div>
       </div>
       <div id="sidebar-toggle" class="sidebar-toggle">
-        <button id="toggleButton" class="toggle-btn" onclick="toggleButton()">
+        <button id="toggleButton" class="toggle-btn">
           <span>
             <img src="assets/chevron-down.png" alt="Arrow-left" />
           </span>
@@ -194,7 +194,7 @@
           <a href="#" class="tab">Employer's Contribution</a>
         </div>
         <div class="dropdown">
-          <button class="dropdown-toggle" onclick="toggleDropdown()">
+          <button class="dropdown-toggle">
             <span id="selected-value">Allowance</span>
             <span class="arrow"></span>
           </button>
@@ -202,29 +202,27 @@
             <li>
               <a
                 href="/payroll-income.html"
-                onclick="selectOption(this, 'Income')"
                 >Income</a
               >
             </li>
             <li>
-              <a href="/index.html" onclick="selectOption(this, 'Deductions')"
+              <a href="/index.html"
                 >Deductions</a
               >
             </li>
             <li class="selected">
               <a
                 href="/payroll-allowance.html"
-                onclick="selectOption(this, 'Allowance')"
                 >Allowance</a
               >
             </li>
             <li>
-              <a href="#" onclick="selectOption(this, 'Reimbursement')"
+              <a href="#"
                 >Reimbursement</a
               >
             </li>
             <li>
-              <a href="#" onclick="selectOption('Employer\'s Contribution')"
+              <a href="#"
                 >Employer's Contribution</a
               >
             </li>
@@ -287,7 +285,6 @@
                       <button class="delete-btn">
                         <img
                           src="assets/edit.svg"
-                          onclick="openModal()"
                           alt="Edit"
                         />
                       </button>
@@ -315,7 +312,6 @@
                       <button class="delete-btn">
                         <img
                           src="assets/edit.svg"
-                          onclick="openModal()"
                           alt="Edit"
                         />
                       </button>
@@ -343,7 +339,6 @@
                       <button class="delete-btn">
                         <img
                           src="assets/edit.svg"
-                          onclick="openModal()"
                           alt="Edit"
                         />
                       </button>
@@ -368,10 +363,9 @@
                       <button class="delete-btn">
                         <img src="assets/trash-01.svg" alt="Delete" />
                       </button>
-                      <button class="delete-btn">
+                      <button class="edit-btn">
                         <img
                           src="assets/edit.svg"
-                          onclick="openModal()"
                           alt="Edit"
                         />
                       </button>
@@ -408,7 +402,7 @@
       <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
           <!-- Close Button -->
-          <button class="modal-close" onclick="closeModal()">✕</button>
+          <button class="modal-close">✕</button>
 
           <div class="modal-header">
             <h2>Update Allowance</h2>
@@ -441,7 +435,6 @@
                   type="button"
                   class="btn btn-secondary"
                   id="closeModal"
-                  onclick="closeModal()"
                 >
                   Close
                 </button>
@@ -454,141 +447,6 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".menu-toggle").click(function () {
-          $(".sidebar").toggleClass("open");
-          $(".main-content").toggleClass("sidebar-open");
-          $(".menu-toggle").toggleClass("hidden");
-          $(".overlay").toggleClass("hidden");
-          $(".menu-toggle-close").toggleClass("color-white");
-        });
-
-        $(window).resize(function () {
-          if ($(window).width() > 768) {
-            $(".sidebar").removeClass("open");
-            $(".main-content").removeClass("sidebar-open");
-            $(".menu-toggle-close").addClass("hidden");
-            $(".overlay").addClass("hidden");
-          }
-        });
-
-        $(document).click(function (event) {
-          if (
-            !$(event.target).closest(
-              ".sidebar, .menu-toggle.open, .menu-toggle"
-            ).length
-          ) {
-            $(".sidebar").removeClass("open");
-            $(".menu-toggle").removeClass("hidden");
-            $(".menu-toggle-close").addClass("hidden");
-            $(".overlay").addClass("hidden");
-            $(".menu-toggle-close").removeClass("color-white");
-          }
-        });
-
-        $(".sidebar").click(function (event) {
-          event.stopPropagation();
-        });
-      });
-    </script>
-    <script>
-      function openModal() {
-        document.getElementById("modalOverlay").style.display = "flex";
-      }
-
-      // Close Modal Function
-      function closeModal() {
-        document.getElementById("modalOverlay").style.display = "none";
-      }
-      function toggleDropdown() {
-        const dropdown = document.querySelector(".dropdown");
-        const arrow = document.querySelector(".arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function togglePaginationDropdown() {
-        const dropdown = document.querySelector(".pagination-dropdown");
-        const arrow = document.querySelector(".pagination-arrow");
-
-        dropdown.classList.toggle("active");
-        arrow.classList.toggle("active");
-      }
-
-      function selectPaginationOption(element, option) {
-        document.getElementById("selected-pagination-value").textContent =
-          option;
-        const allItems = document.querySelectorAll(
-          ".pagination-dropdown-menu li"
-        );
-        allItems.forEach((item) => item.classList.remove("selected"));
-        element.parentElement.classList.add("selected");
-        const dropdown = document.querySelector(".pagination-dropdown");
-        dropdown.classList.remove("active");
-        const arrow = document.querySelector(".pagination-arrow");
-        arrow.classList.remove("active");
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        toggleButton();
-      });
-
-      function toggleButton() {
-        const button = document.getElementById("toggleButton");
-        const sidebar = document.getElementById("sidebar");
-        const mainContent = document.getElementById("main-content");
-
-        if (button) {
-          // Ensure toggleSidebar is only added once
-          button.addEventListener("click", toggleSidebar);
-        }
-
-        function toggleSidebar() {
-          sidebar.classList.toggle("collapsed");
-          mainContent.classList.toggle("adjusted");
-          button.classList.toggle("collapsed");
-        }
-      }
-
-      function selectOption(element, option) {
-        // Set the selected option as the button's value
-        document.getElementById("selected-value").textContent = option;
-
-        // Remove the 'selected' class from any previously selected item
-        const allItems = document.querySelectorAll(".dropdown-menu li");
-        allItems.forEach((item) => item.classList.remove("selected"));
-
-        // Add the 'selected' class to the clicked item
-        element.parentElement.classList.add("selected");
-
-        // Close the dropdown after selection
-        const dropdown = document.querySelector(".dropdown");
-        dropdown.classList.remove("active");
-
-        // Optionally, you can change the arrow's direction back
-        const arrow = document.querySelector(".arrow");
-        arrow.classList.remove("active");
-      }
-
-      const menuItems = document.querySelectorAll(".menu-item");
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetSubmenu = document.getElementById(
-            this.getAttribute("data-target")
-          );
-          targetSubmenu.classList.toggle("open");
-          this.classList.toggle("open");
-          document.querySelectorAll(".submenu").forEach((submenu) => {
-            if (submenu !== targetSubmenu) {
-              submenu.classList.remove("open");
-              submenu.previousElementSibling.classList.remove("open");
-            }
-          });
-        });
-      });
-    </script>
+    <script src="/bulk-js.js"></script>
   </body>
 </html>
