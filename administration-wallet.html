@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll Configuration</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/bulk-css.css" />
   </head>
   <body>
@@ -294,17 +298,17 @@
         </div>
       </div>
 
-      <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
+      <div class="hrismodal-overlay" id="hrismodalOverlay">
+        <div class="hrismodal">
           <!-- Close Button -->
-          <button class="modal-close" >✕</button>
+          <button class="hrismodal-close" >✕</button>
 
-          <div class="modal-header">
+          <div class="hrismodal-header">
             <h2>Fund Wallet</h2>
           </div>
-          <div class="modal-body">
-            <p class="modal-subtitle">Fund your wallet</p>
-            <form id="updateForm" class="modal-form">
+          <div class="hrismodal-body">
+            <p class="hrismodal-subtitle">Fund your wallet</p>
+            <form id="updateForm" class="hrismodal-form">
               <label for="amount" class="form-label">Amount*</label>
               <input
                 type="text"
@@ -314,11 +318,11 @@
                 class="form-input"
                 required
               />
-              <div class="modal-actions">
+              <div class="hrismodal-actions">
                 <button
                   type="button"
                   class="btn btn-secondary"
-                  id="closeModal"
+                  id="closehrismodal"
                 >
                   Close
                 </button>
@@ -333,6 +337,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="./bulk-js.js"></script>
   </body>
 </html>

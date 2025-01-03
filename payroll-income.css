@@ -49,7 +49,7 @@ body {
   color: black;
   display: none;
 }
-.modal-overlay {
+.hrismodal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -63,7 +63,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
-.modal {
+.hrismodal {
   background-color: #ffffff;
   padding: 20px 30px;
   width: 350px;
@@ -74,7 +74,7 @@ body {
 }
 
 /* Close Button */
-.modal-close {
+.hrismodal-close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -85,19 +85,19 @@ body {
   color: #555;
 }
 
-.modal-body {
+.hrismodal-body {
   text-align: left;
 }
 
 /* Icon */
-.modal-icon {
+.hrismodal-icon {
   font-size: 40px;
   color: #ff4d4d;
   margin-bottom: 15px;
 }
 
 /* Title */
-.modal-title {
+.hrismodal-title {
   font-size: 15px;
   font-weight: 600;
   color: #333;
@@ -105,14 +105,14 @@ body {
 }
 
 /* Description */
-.modal-description {
+.hrismodal-description {
   font-size: 14px;
   color: #777;
   margin: 10px 0 20px;
 }
 
 /* Action Buttons */
-.modal-actions {
+.hrismodal-actions {
   display: flex;
   gap: 10px;
   justify-content: center;

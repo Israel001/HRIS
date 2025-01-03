@@ -44,41 +44,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
   editButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      openModal();
+      openEditModal();
     });
   });
 
-  // Delete Button Action
+  // Delete button logic
   const deleteButtons = document.querySelectorAll(".delete-btn");
 
-  if (deleteButtons) {
-    deleteButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        openModal();
-      });
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      openDeleteModal();
     });
+  });
+
+  // Open Edit Modal Function
+  function openEditModal() {
+    const modal = document.getElementById("editModalOverlay");
+    if (modal) {
+      modal.style.display = "flex";
+    }
   }
 
-  const closeButton = document.querySelector(".cancel-button");
-  const closeButton2 = document.getElementById("closeModal");
-
-  if (closeButton) {
-    closeButton.addEventListener("click", function () {
-      closeModal();
-    });
+  // Open Delete Modal Function
+  function openDeleteModal() {
+    const modal = document.getElementById("deleteModalOverlay");
+    if (modal) {
+      modal.style.display = "flex";
+    }
   }
 
-  if (closeButton2) {
-    closeButton2.addEventListener("click", function () {
+  const closeButtons = document.querySelectorAll(
+    ".hrismodal-close, .cancel-button, #closehrismodal"
+  );
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", function () {
       closeModal();
     });
-  }
+  });
 
-  const modalClose = document.querySelector(".modal-close");
-
-  if (modalClose) {
-    modalClose.addEventListener("click", function () {
-      closeModal();
+  function closeModal() {
+    const modals = document.querySelectorAll(".hrismodal-overlay");
+    modals.forEach((modal) => {
+      modal.style.display = "none";
     });
   }
 
@@ -177,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (addWallet) {
     addWallet.addEventListener("click", function () {
-      openModal();
+      openhrismodal();
     });
   }
 
@@ -186,13 +194,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // });
 });
 
-function openModal() {
-  document.getElementById("modalOverlay").style.display = "flex";
+function openhrismodal() {
+  document.getElementById("hrismodalOverlay").style.display = "flex";
 }
 
-// Close Modal Function
-function closeModal() {
-  document.getElementById("modalOverlay").style.display = "none";
+// Close hrismodal Function
+function closehrismodal() {
+  document.getElementById("hrismodalOverlay").style.display = "none";
 }
 
 function openDetails() {

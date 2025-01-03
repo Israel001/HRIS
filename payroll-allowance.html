@@ -282,7 +282,7 @@
                       <button class="delete-btn">
                         <img src="assets/trash-01.svg" alt="Delete" />
                       </button>
-                      <button class="delete-btn">
+                      <button class="edit-btn">
                         <img
                           src="assets/edit.svg"
                           alt="Edit"
@@ -309,7 +309,7 @@
                       <button class="delete-btn">
                         <img src="assets/trash-01.svg" alt="Delete" />
                       </button>
-                      <button class="delete-btn">
+                      <button class="edit-btn">
                         <img
                           src="assets/edit.svg"
                           alt="Edit"
@@ -336,7 +336,7 @@
                       <button class="delete-btn">
                         <img src="assets/trash-01.svg" alt="Delete" />
                       </button>
-                      <button class="delete-btn">
+                      <button class="edit-btn">
                         <img
                           src="assets/edit.svg"
                           alt="Edit"
@@ -399,51 +399,46 @@
 
         <div class="pagination-info">Showing 1 to 4 of 4 entries</div>
       </div>
-      <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-          <!-- Close Button -->
-          <button class="modal-close">✕</button>
-
-          <div class="modal-header">
-            <h2>Update Allowance</h2>
-          </div>
-          <div class="modal-body">
-            <!-- <p class="modal-subtitle">
-              Are you sure you want to delete this item?
-            </p> -->
-            <form id="updateForm" class="modal-form">
-              <label for="title" class="form-label">Title*</label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                placeholder="Allowee"
-                class="form-input"
-                required
-              />
-              <label for="amount" class="form-label">Amount*</label>
-              <input
-                type="text"
-                id="amount"
-                name="amount"
-                placeholder="Enter Amount"
-                class="form-input"
-                required
-              />
-              <div class="modal-actions">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  id="closeModal"
-                >
-                  Close
-                </button>
-                <button type="submit" class="btn btn-primary">Update</button>
-              </div>
-            </form>
-          </div>
+    <div class="hrismodal-overlay" id="editModalOverlay">
+      <div class="hrismodal">
+        <button class="hrismodal-close">✕</button>
+        <div class="hrismodal-header">
+          <h2>Update Allowance</h2>
+        </div>
+        <div class="hrismodal-body">
+          <form id="updateForm" class="hrismodal-form">
+            <label for="title" class="form-label">Title*</label>
+            <input type="text" id="title" name="title" placeholder="Allowance" class="form-input" required />
+            <label for="amount" class="form-label">Amount*</label>
+            <input type="text" id="amount" name="amount" placeholder="Enter Amount" class="form-input" required />
+            <div class="hrismodal-actions">
+              <button type="button" class="btn btn-secondary" id="closeEditModal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+
+    <div class="hrismodal-overlay" id="deleteModalOverlay">
+      <div class="hrismodal">
+        <button class="hrismodal-close">✕</button>
+        <div class="hrismodal-body">
+          <div class="hrismodal-icon">
+            <span>
+              <img src="assets/trash-01.svg" alt="Delete Icon" />
+            </span>
+          </div>
+          <h2 class="hrismodal-title">Delete Item</h2>
+          <p class="hrismodal-description">Are you sure you want to delete this item?</p>
+        </div>
+        <div class="hrismodal-actions">
+          <button class="cancel-button">Cancel</button>
+          <button class="delete-button">Delete</button>
+        </div>
+      </div>
+    </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

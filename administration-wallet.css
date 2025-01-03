@@ -444,8 +444,8 @@ td {
   cursor: pointer;
 }
 
-/* Modal Overlay */
-.modal-overlay {
+/* hrismodal Overlay */
+.hrismodal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -459,12 +459,12 @@ td {
   backdrop-filter: blur(5px);
 }
 
-/* Hidden Modal */
+/* Hidden hrismodal */
 .hidden {
   display: none;
 }
 
-.modal {
+.hrismodal {
   background-color: #ffffff;
   padding: 20px 30px;
   width: 550px;
@@ -475,7 +475,7 @@ td {
 }
 
 /* Close Button */
-.modal-close {
+.hrismodal-close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -486,12 +486,12 @@ td {
   color: #555;
 }
 
-.modal-body {
+.hrismodal-body {
   text-align: left;
 }
 
-/* Modal Content */
-.modal-content {
+/* hrismodal Content */
+.hrismodal-content {
   background: #fff;
   border-radius: 8px;
   padding: 24px;
@@ -500,36 +500,36 @@ td {
   animation: slide-down 0.3s ease-out;
 }
 
-/* Modal Header */
-.modal-header {
+/* hrismodal Header */
+.hrismodal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
 }
 
-.modal-header h2 {
+.hrismodal-header h2 {
   margin: 0;
   font-size: 18px;
   font-weight: bold;
   color: #333;
 }
 
-.modal-subtitle {
+.hrismodal-subtitle {
   font-size: 14px;
   color: #666;
   margin-bottom: 16px;
 }
 
 /* Form Labels and Inputs */
-.modal-form .form-label {
+.hrismodal-form .form-label {
   display: block;
   font-size: 12px;
   margin-bottom: 6px;
   color: #333;
 }
 
-.modal-form .form-input {
+.hrismodal-form .form-input {
   width: 100%;
   padding: 15px 15px;
   border: 1px solid #ddd;
@@ -538,8 +538,8 @@ td {
   margin-bottom: 16px;
 }
 
-/* Modal Actions */
-.modal-actions {
+/* hrismodal Actions */
+.hrismodal-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1019,7 +1019,7 @@ td {
   .table-container {
     width: 750px;
   }
-  
+
   .dropdown {
     display: block;
   }
@@ -1031,7 +1031,7 @@ td {
 }
 
 @media (max-width: 450px) {
-  .modal {
+  .hrismodal {
     width: 350px;
   }
 

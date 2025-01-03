@@ -1,28 +1,28 @@
 /* payment  */
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/static/Inter_18pt-Regular.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("/fonts/Inter/static/Inter_18pt-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/static/Inter_18pt-Medium.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("/fonts/Inter/static/Inter_18pt-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/static/Inter_18pt-SemiBold.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("/fonts/Inter/static/Inter_18pt-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("/fonts/Inter/static/Inter_18pt-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -118,7 +118,7 @@ body {
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
-  width: 77vw;
+  width: 74vw;
 }
 
 .custom-table tbody td:last-child,
@@ -148,12 +148,12 @@ body {
   z-index: 2; /* Ensure headers appear above scrolling content */
 }
 
-.disabled-td{
-    background-color: #f7f9fb;
+.disabled-td {
+  background-color: #f7f9fb;
 }
 
-.undisabled-td{
-    background-color: #fff;
+.undisabled-td {
+  background-color: #fff;
 }
 
 .custom-table tbody tr:nth-child(even) {
@@ -178,7 +178,7 @@ body {
   width: 60%;
   padding: 8px 12px;
   font-size: 14px;
-  border: 1px solid #D0D5DD;
+  border: 1px solid #d0d5dd;
   border-radius: 4px;
   box-sizing: border-box;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -188,6 +188,14 @@ body {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
+}
+
+.edit-btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
 }
 
 .delete-btn {
@@ -942,7 +950,7 @@ td {
   background-color: #f0f0f0;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -972,7 +980,6 @@ td {
   visibility: visible;
   opacity: 1;
 }
-
 
 @media (max-width: 1000px) {
   .mobile-header {
@@ -1141,7 +1148,7 @@ td {
   z-index: 1998;
 }
 
-.modal-overlay {
+.hrismodal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1155,7 +1162,7 @@ td {
   backdrop-filter: blur(5px);
 }
 
-.modal {
+.hrismodal {
   background-color: #ffffff;
   padding: 20px 30px;
   width: 350px;
@@ -1165,7 +1172,7 @@ td {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.modal-close {
+.hrismodal-close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1176,19 +1183,19 @@ td {
   color: #555;
 }
 
-.modal-body {
+.hrismodal-body {
   text-align: left;
 }
 
 /* Icon */
-.modal-icon {
+.hrismodal-icon {
   font-size: 40px;
   color: #ff4d4d;
   margin-bottom: 15px;
 }
 
 /* Title */
-.modal-title {
+.hrismodal-title {
   font-size: 15px;
   font-weight: 600;
   color: #333;
@@ -1196,13 +1203,13 @@ td {
 }
 
 /* Description */
-.modal-description {
+.hrismodal-description {
   font-size: 14px;
   color: #777;
   margin: 10px 0 20px;
 }
 
-.modal-actions {
+.hrismodal-actions {
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -1278,21 +1285,21 @@ td {
 }
 
 /* Allowance */
-.modal-subtitle {
+.hrismodal-subtitle {
   font-size: 14px;
   color: #666;
   margin-bottom: 16px;
 }
 
 /* Form Labels and Inputs */
-.modal-form .form-label {
+.hrismodal-form .form-label {
   display: block;
   font-size: 12px;
   margin-bottom: 6px;
   color: #333;
 }
 
-.modal-form .form-input {
+.hrismodal-form .form-input {
   width: 100%;
   padding: 15px 15px;
   border: 1px solid #ddd;
@@ -1301,7 +1308,7 @@ td {
   margin-bottom: 16px;
 }
 
-.modal-actions {
+.hrismodal-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1523,10 +1530,9 @@ td {
   background-color: #f0f0f0;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
-
 
 /* Administration-Appearance */
 

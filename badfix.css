@@ -1034,7 +1034,7 @@ td {
   z-index: 1998;
 }
 
-.modal-overlay {
+.hrismodal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1048,7 +1048,7 @@ td {
   backdrop-filter: blur(5px);
 }
 
-.modal {
+.hrismodal {
   background-color: #ffffff;
   padding: 20px 30px;
   width: 350px;
@@ -1058,7 +1058,7 @@ td {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.modal-close {
+.hrismodal-close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1069,19 +1069,19 @@ td {
   color: #555;
 }
 
-.modal-body {
+.hrismodal-body {
   text-align: left;
 }
 
 /* Icon */
-.modal-icon {
+.hrismodal-icon {
   font-size: 40px;
   color: #ff4d4d;
   margin-bottom: 15px;
 }
 
 /* Title */
-.modal-title {
+.hrismodal-title {
   font-size: 15px;
   font-weight: 600;
   color: #333;
@@ -1089,13 +1089,13 @@ td {
 }
 
 /* Description */
-.modal-description {
+.hrismodal-description {
   font-size: 14px;
   color: #777;
   margin: 10px 0 20px;
 }
 
-.modal-actions {
+.hrismodal-actions {
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -1171,21 +1171,21 @@ td {
 }
 
 /* Allowance */
-.modal-subtitle {
+.hrismodal-subtitle {
   font-size: 14px;
   color: #666;
   margin-bottom: 16px;
 }
 
 /* Form Labels and Inputs */
-.modal-form .form-label {
+.hrismodal-form .form-label {
   display: block;
   font-size: 12px;
   margin-bottom: 6px;
   color: #333;
 }
 
-.modal-form .form-input {
+.hrismodal-form .form-input {
   width: 100%;
   padding: 15px 15px;
   border: 1px solid #ddd;
@@ -1194,7 +1194,7 @@ td {
   margin-bottom: 16px;
 }
 
-.modal-actions {
+.hrismodal-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
