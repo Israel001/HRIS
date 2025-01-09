@@ -168,19 +168,47 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const colorInputs = document.querySelectorAll(".color-input");
+const primaryInput = $("#primaryInput");
+const secondaryInput = $("#secondaryInput");
 
-  if (colorInputs) {
-    colorInputs.forEach((input) => {
-      input.addEventListener("input", updateColor);
-    });
+// Function to update colors
+const updateColor = (event) => {
+  const target = event.target;
+  const isPrimary = target.id.includes("primary");
+  const colorValue = target.value;
 
-    // Initialize with the default values
-    colorInputs.forEach((input) => {
-      const event = new Event("input");
-      input.dispatchEvent(event); // Trigger the input event to initialize the circles
-    });
+  // Determine elements to update
+  const circleId = isPrimary ? "#primaryCircle" : "#secondaryCircle";
+  const textInputId = isPrimary ? "#primaryText" : "#secondaryText";
+  const pickerId = isPrimary ? "#primaryPicker" : "#secondaryPicker";
+  const cssVarName = isPrimary ? "--primary-color" : "--secondary-color";
+
+  // Update circle, text, and CSS variables
+  $(circleId).css("background-color", colorValue);
+  $(textInputId).val(colorValue);
+  $(pickerId).val(colorValue);
+  document.documentElement.style.setProperty(cssVarName, colorValue);
+};
+
+// Event listeners for color inputs and text inputs
+$(".color-input").on("input", updateColor);
+$(".text-input").on("input", function () {
+  const colorValue = $(this).val();
+  const inputType = this.id.includes("primary")
+    ? "#primaryPicker"
+    : "#secondaryPicker";
+
+  // Validate and update only if the value is a valid hex color
+  if (/^#[0-9A-F]{6}$/i.test(colorValue)) {
+    $(inputType).val(colorValue).trigger("input");
   }
+});
+
+// Initialize colors
+$(".color-input").trigger("input");
+
+
+
   const addWallet = document.querySelector(".addWallet");
 
   if (addWallet) {

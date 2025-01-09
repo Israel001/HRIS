@@ -45,7 +45,13 @@ body {
 }
 
 .logo-plus {
+  width: 192px;
   padding: 10px;
+}
+
+.logo-plus img {
+  width: 100%;
+  height: 100%;
 }
 
 .sidebar {
@@ -1470,7 +1476,7 @@ td {
 }
 
 .details-panel .tab2.active {
-  background-color: #edf8ed;
+  background-color: var(--secondary-color);
   border: 2px solid #e0e0e0;
   border-left: 0;
   border-top: 0;
@@ -1601,25 +1607,32 @@ td {
   position: relative;
   display: flex;
   align-items: center;
+  gap: 10px; /* Adds space between elements */
 }
 
 .color-circle {
-  position: absolute;
-  left: 8px; /* Inside the input field */
   width: 20px;
   height: 20px;
   border-radius: 50%;
   border: 1px solid #ddd; /* Optional border for clarity */
 }
 
-.color-input {
-  padding: 15px 60px 15px 32px; /* Extra left padding to accommodate the circle */
+.color-input,
+.text-input {
+  padding: 10px 15px;
   font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 450px;
+  width: 200px;
   box-sizing: border-box;
 }
+
+.color-input {
+  width: 60px;
+  padding: 5px; /* Smaller padding for color input */
+  cursor: pointer;
+}
+
 
 .update-button-container {
   margin-top: 30px;
