@@ -1,0 +1,27 @@
+{
+  "basic": {
+    "title": "Basic Details",
+    "details": [
+      { "label": "Full Name", "value": "Jamiu Jimoh" },
+      { "label": "Employee ID", "value": "j-001" },
+      { "label": "Email Address", "value": "waleyinka55@gmail.com" },
+      { "label": "Status", "value": "Active" },
+      { "label": "Position", "value": "Software Engineer" }
+    ]
+  },
+  "bank-details": {
+    "title": "Bank Details",
+    "details": [
+      { "label": "Bank Name", "value": "GTBank" },
+      { "label": "Account Number", "value": "1234567890" },
+      { "label": "Account Type", "value": "Savings" }
+    ]
+  },
+  "statutory-details": {
+    "title": "Statutory Details",
+    "details": [
+      { "label": "Pension ID", "value": "PEN-001" },
+      { "label": "Tax ID", "value": "TAX-2025" }
+    ]
+  }
+}
