@@ -196,7 +196,7 @@ body {
   outline: none;
 }
 
-.edit-btn{
+.edit-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -1221,6 +1221,13 @@ td {
   justify-content: center;
 }
 
+.hrismodal-actions-lg {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 20px;
+}
+
 .cancel-button {
   background: #fff;
   border: 1px solid #ccc;
@@ -1247,6 +1254,110 @@ td {
 
 .delete-button:hover {
   background-color: #e63939;
+}
+
+.hrismodal-lg {
+  background-color: #ffffff;
+  padding: 35px 35px;
+  width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hrismodal-title-lg {
+  font-size: 25px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.hrismodal-body{
+  display: flex;
+  flex-direction: column;
+}
+
+.hrismodal-miniDescription {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.hrismodal-file-upload-container {
+  display: flex;
+  align-items: center;
+  border: 2px solid #c3c3c3;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.hrismodal-custom-file-upload {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hrismodal-file-input {
+  display: none; /* Hides the native file input */
+}
+
+.hrismodal-file-name {
+  padding: 10px 15px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #666;
+}
+
+.hrismodal-upload-button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 12px 48px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.hrismodal-upload-button:hover {
+  background-color: #2e7d32;
+}
+
+.detailsPanel{
+  cursor: pointer;
+}
+
+.details-panel-action-button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.detail_panel_reject_button {
+  background: #FEF3F2;
+  border: 1px solid var(--secondary-color);
+  color: #B42318;
+  padding: 10px 32px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.details_panel_approve_button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .button-container {
@@ -1487,13 +1598,13 @@ td {
   color: #2e6e2b;
 }
 
-.details-content {
+.tab-pane.active {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.details-content p {
+.tab-pane p {
   margin: 10px 0;
   font-size: 14px;
   display: flex;
@@ -1501,10 +1612,21 @@ td {
   gap: 5px;
 }
 
-.details-content p strong {
+.tab-pane p strong {
   display: inline-block;
   color: #344054;
   font-size: 14px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+
+.tab2.active {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
 }
 
 .dropdown-container2 {
@@ -1635,7 +1757,6 @@ td {
   padding: 5px; /* Smaller padding for color input */
   cursor: pointer;
 }
-
 
 .update-button-container {
   margin-top: 30px;

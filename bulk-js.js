@@ -85,81 +85,45 @@ document.addEventListener("DOMContentLoaded", function () {
   const detailsPanel = document.querySelectorAll(".detailsPanel");
   const closeDetailsButton = document.querySelector(".details-close-btn");
   const tabs = document.querySelectorAll(".tab2");
-  const detailsContent = document.querySelector(".details-content");
+  const tabPanes = document.querySelectorAll(".tab-pane");
 
   if (detailsPanel) {
     detailsPanel.forEach((panel) => {
-      panel.addEventListener("click", function () {
-        openDetails();
+      panel.addEventListener("click", function (event) {
+        const closestTr = event.target.closest("tr");
+        openDetails(closestTr.getAttribute("data-panel-id"));
       });
     });
   }
 
   if (closeDetailsButton) {
-    closeDetailsButton.addEventListener("click", function () {
-      closeDetails();
+    closeDetailsButton.addEventListener("click", function (event) {
+      const closestButton = event.target.closest("button");
+      closeDetails(closestButton.getAttribute("data-panel-id"));
     });
   }
 
-  // tabs.forEach((tab) => {
-  //   tab.addEventListener("click", () => {
-  //     // Remove the active class from all tabs
-  //     tabs.forEach((t) => t.classList.remove("active"));
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Remove active class from all tabs
+      tabs.forEach((t) => t.classList.remove("active"));
 
-  //     // Add the active class to the clicked tab
-  //     tab.classList.add("active");
+      // Add active class to the clicked tab
+      tab.classList.add("active");
 
-  //     // For now, display the same content regardless of the tab clicked
-  //     detailsContent.innerHTML = `
-  //       <p><strong>Full Name</strong> <span>Jamiu Jimoh</span></p>
-  //       <p><strong>Employee ID</strong> <span>j-001</span></p>
-  //       <p><strong>Email Address</strong> <span>waleyinka55@gmail.com</span></p>
-  //       <p><strong>Status</strong> <span>Active</span></p>
-  //       <p><strong>Position</strong> <span>Software Engineer</span></p>
-  //       <p><strong>Gross Income</strong> <span>1200000.00</span></p>
-  //       <p><strong>Currency</strong> <span>NGN</span></p>
-  //       <p><strong>Manual Payment</strong> <span>No</span></p>
-  //     `;
-  //   });
-  // });
+      // Get the associated tab-pane id
+      const target = tab.getAttribute("data-tab");
 
-  fetch("data.json")
-    .then((response) => response.json())
-    .then((data) => {
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          tabs.forEach((t) => t.classList.remove("active"));
-
-          tab.classList.add("active");
-
-          const tabKey = tab.getAttribute("data-tab");
-
-          const tabData = data[tabKey];
-
-          if (tabData) {
-            detailsContent.innerHTML = `
-              <h3>${tabData.title}</h3>
-              ${tabData.details
-                .map(
-                  (item) => `
-                <p><strong>${item.label}</strong> <span>${item.value}</span></p>
-              `
-                )
-                .join("")}
-            `;
-          } else {
-            detailsContent.innerHTML = `<p>No data available for this section.</p>`;
-          }
-        });
+      // Hide all tab panes and show the target one
+      tabPanes.forEach((pane) => {
+        if (pane.id === target) {
+          pane.classList.add("active");
+        } else {
+          pane.classList.remove("active");
+        }
       });
-
-      // Trigger the first tab click to load initial content
-      tabs[0].click();
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      detailsContent.innerHTML = `<p>Error loading content. Please try again later.</p>`;
     });
+  });
 
   const menuItems = document.querySelectorAll(".menu-item");
   menuItems.forEach((item) => {
@@ -190,13 +154,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if(toggleButtonForOnboardingEmployees){
+  if (toggleButtonForOnboardingEmployees) {
     document.addEventListener("click", (event) => {
-      if(!event.target.classList.contains("dropdown-toggle2")){
+      if (!event.target.classList.contains("dropdown-toggle2")) {
         dropdownList.classList.add("hidden");
       }
     });
   }
+
+  const hrismodal_fileInput = document.getElementById("hrismodal-file-upload");
+  const hrismodal_fileName = document.getElementById("hrismodal-file-name");
+
+  hrismodal_fileInput.addEventListener("change", () => {
+    if (hrismodal_fileInput.files.length > 0) {
+      hrismodal_fileName.textContent = hrismodal_fileInput.files[0].name;
+    } else {
+      hrismodal_fileName.textContent = "No file chosen";
+    }
+  });
 
   const fileUpload = document.getElementById("fileUpload");
   const fileInput = document.getElementById("fileInput");
@@ -298,12 +273,12 @@ function closehrismodal() {
   document.getElementById("hrismodalOverlay").style.display = "none";
 }
 
-function openDetails() {
-  document.getElementById("detailsPanel").classList.add("open");
+function openDetails(panelId) {
+  document.querySelector(panelId).classList.add("open");
 }
 
-function closeDetails() {
-  document.getElementById("detailsPanel").classList.remove("open");
+function closeDetails(panelId) {
+  document.querySelector(panelId).classList.remove("open");
 }
 
 function updateColor(event) {
